@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.CSfxscscqkMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.CSfxscscqk" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="nf" property="nf" jdbcType="VARCHAR" />
+    <result column="cplb" property="cplb" jdbcType="VARCHAR" />
+    <result column="zdmj" property="zdmj" jdbcType="REAL" />
+    <result column="bzmj" property="bzmj" jdbcType="REAL" />
+    <result column="zcl" property="zcl" jdbcType="REAL" />
+    <result column="spl" property="spl" jdbcType="REAL" />
+    <result column="swxl" property="swxl" jdbcType="REAL" />
+    <result column="zcz" property="zcz" jdbcType="REAL" />
+    <result column="sfxid" property="sfxid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, nf, cplb, zdmj, bzmj, zcl, spl, swxl, zcz, sfxid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_sfxscscqk
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from c_sfxscscqk
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.CSfxscscqk" >
+    insert into c_sfxscscqk (id, nf, cplb, 
+      zdmj, bzmj, zcl, spl, 
+      swxl, zcz, sfxid)
+    values (#{id,jdbcType=INTEGER}, #{nf,jdbcType=VARCHAR}, #{cplb,jdbcType=VARCHAR}, 
+      #{zdmj,jdbcType=REAL}, #{bzmj,jdbcType=REAL}, #{zcl,jdbcType=REAL}, #{spl,jdbcType=REAL}, 
+      #{swxl,jdbcType=REAL}, #{zcz,jdbcType=REAL}, #{sfxid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.CSfxscscqk" >
+    insert into c_sfxscscqk
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="nf != null" >
+        nf,
+      </if>
+      <if test="cplb != null" >
+        cplb,
+      </if>
+      <if test="zdmj != null" >
+        zdmj,
+      </if>
+      <if test="bzmj != null" >
+        bzmj,
+      </if>
+      <if test="zcl != null" >
+        zcl,
+      </if>
+      <if test="spl != null" >
+        spl,
+      </if>
+      <if test="swxl != null" >
+        swxl,
+      </if>
+      <if test="zcz != null" >
+        zcz,
+      </if>
+      <if test="sfxid != null" >
+        sfxid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nf != null" >
+        #{nf,jdbcType=VARCHAR},
+      </if>
+      <if test="cplb != null" >
+        #{cplb,jdbcType=VARCHAR},
+      </if>
+      <if test="zdmj != null" >
+        #{zdmj,jdbcType=REAL},
+      </if>
+      <if test="bzmj != null" >
+        #{bzmj,jdbcType=REAL},
+      </if>
+      <if test="zcl != null" >
+        #{zcl,jdbcType=REAL},
+      </if>
+      <if test="spl != null" >
+        #{spl,jdbcType=REAL},
+      </if>
+      <if test="swxl != null" >
+        #{swxl,jdbcType=REAL},
+      </if>
+      <if test="zcz != null" >
+        #{zcz,jdbcType=REAL},
+      </if>
+      <if test="sfxid != null" >
+        #{sfxid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.CSfxscscqk" >
+    update c_sfxscscqk
+    <set >
+      <if test="nf != null" >
+        nf = #{nf,jdbcType=VARCHAR},
+      </if>
+      <if test="cplb != null" >
+        cplb = #{cplb,jdbcType=VARCHAR},
+      </if>
+      <if test="zdmj != null" >
+        zdmj = #{zdmj,jdbcType=REAL},
+      </if>
+      <if test="bzmj != null" >
+        bzmj = #{bzmj,jdbcType=REAL},
+      </if>
+      <if test="zcl != null" >
+        zcl = #{zcl,jdbcType=REAL},
+      </if>
+      <if test="spl != null" >
+        spl = #{spl,jdbcType=REAL},
+      </if>
+      <if test="swxl != null" >
+        swxl = #{swxl,jdbcType=REAL},
+      </if>
+      <if test="zcz != null" >
+        zcz = #{zcz,jdbcType=REAL},
+      </if>
+      <if test="sfxid != null" >
+        sfxid = #{sfxid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.CSfxscscqk" >
+    update c_sfxscscqk
+    set nf = #{nf,jdbcType=VARCHAR},
+      cplb = #{cplb,jdbcType=VARCHAR},
+      zdmj = #{zdmj,jdbcType=REAL},
+      bzmj = #{bzmj,jdbcType=REAL},
+      zcl = #{zcl,jdbcType=REAL},
+      spl = #{spl,jdbcType=REAL},
+      swxl = #{swxl,jdbcType=REAL},
+      zcz = #{zcz,jdbcType=REAL},
+      sfxid = #{sfxid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+   <select id="selectByExample"  resultMap="BaseResultMap" parameterType="java.lang.String">
+  select
+  <include refid="Base_Column_List"/>
+  from c_sfxscscqk
+    where sfxid = #{sfxid,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByID" resultType="java.lang.Integer" parameterType="java.lang.String">
+   select id from c_sfxscscqk
+    where sfxid = #{sfxid,jdbcType=VARCHAR}
+  
+  </select>
+  <select id="selectBySfxid" resultType="java.lang.String" parameterType="java.lang.String">
+  
+  SELECT DISTINCT nf FROM c_sfxscscqk  
+    where sfxid = #{sfxid,jdbcType=VARCHAR}
+  
+  </select>
+  
+  
+  
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.AJyztMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.AJyzt" >
+    <id column="a_jyztid" property="aJyztid" jdbcType="INTEGER" />
+    <result column="a_wjid" property="aWjid" jdbcType="VARCHAR" />
+    <result column="a_jyztmc" property="aJyztmc" jdbcType="VARCHAR" />
+    <result column="a_drzw" property="aDrzw" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    a_jyztid, a_wjid, a_jyztmc, a_drzw
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_jyzt
+    where a_jyztid = #{aJyztid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from a_jyzt
+    where a_jyztid = #{aJyztid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.AJyzt" >
+    insert into a_jyzt (a_jyztid, a_wjid, a_jyztmc, 
+      a_drzw)
+    values (#{aJyztid,jdbcType=INTEGER}, #{aWjid,jdbcType=VARCHAR}, #{aJyztmc,jdbcType=VARCHAR}, 
+      #{aDrzw,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.AJyzt" >
+    insert into a_jyzt
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aJyztid != null" >
+        a_jyztid,
+      </if>
+      <if test="aWjid != null" >
+        a_wjid,
+      </if>
+      <if test="aJyztmc != null" >
+        a_jyztmc,
+      </if>
+      <if test="aDrzw != null" >
+        a_drzw,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aJyztid != null" >
+        #{aJyztid,jdbcType=INTEGER},
+      </if>
+      <if test="aWjid != null" >
+        #{aWjid,jdbcType=VARCHAR},
+      </if>
+      <if test="aJyztmc != null" >
+        #{aJyztmc,jdbcType=VARCHAR},
+      </if>
+      <if test="aDrzw != null" >
+        #{aDrzw,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.AJyzt" >
+    update a_jyzt
+    <set >
+      <if test="aWjid != null" >
+        a_wjid = #{aWjid,jdbcType=VARCHAR},
+      </if>
+      <if test="aJyztmc != null" >
+        a_jyztmc = #{aJyztmc,jdbcType=VARCHAR},
+      </if>
+      <if test="aDrzw != null" >
+        a_drzw = #{aDrzw,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_jyztid = #{aJyztid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.AJyzt" >
+    update a_jyzt
+    set a_wjid = #{aWjid,jdbcType=VARCHAR},
+      a_jyztmc = #{aJyztmc,jdbcType=VARCHAR},
+      a_drzw = #{aDrzw,jdbcType=VARCHAR}
+    where a_jyztid = #{aJyztid,jdbcType=INTEGER}
+  </update>
+</mapper>

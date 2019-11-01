@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.BXlMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.BXl" >
+    <id column="a_xlid" property="aXlid" jdbcType="INTEGER" />
+    <result column="a_xl" property="aXl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    a_xlid, a_xl
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from b_xl
+    where a_xlid = #{aXlid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from b_xl
+    where a_xlid = #{aXlid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.BXl" >
+    insert into b_xl (a_xlid, a_xl)
+    values (#{aXlid,jdbcType=INTEGER}, #{aXl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.BXl" >
+    insert into b_xl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aXlid != null" >
+        a_xlid,
+      </if>
+      <if test="aXl != null" >
+        a_xl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aXlid != null" >
+        #{aXlid,jdbcType=INTEGER},
+      </if>
+      <if test="aXl != null" >
+        #{aXl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.BXl" >
+    update b_xl
+    <set >
+      <if test="aXl != null" >
+        a_xl = #{aXl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_xlid = #{aXlid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.BXl" >
+    update b_xl
+    set a_xl = #{aXl,jdbcType=VARCHAR}
+    where a_xlid = #{aXlid,jdbcType=INTEGER}
+  </update>
+    <select id="findAllStudy" resultMap="BaseResultMap"  >
+    select * from b_xl 
+  </select>
+<select id="searchStudyByName" resultMap="BaseResultMap" parameterType="String" >
+    select * from b_xl 
+     <if test="_parameter != null" >
+       where a_xl like '%${_parameter}%'
+     </if>
+     
+  </select>
+</mapper>

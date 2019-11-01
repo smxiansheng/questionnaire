@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<!-- 注意事项:单独使用mybatis的时候，需要配置环境（数据源和事务管理器）
+但是当mybatis和spring进行整合的时候,交给spring容器来进行管理
+-->
+
+<!-- 对返回类型进行扫包 -->
+<typeAliases>
+<package name="com.ssm.model"/>
+
+</typeAliases>	
+	
+	
+	
+</configuration>

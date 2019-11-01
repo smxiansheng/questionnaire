@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.CSfxnyyqjsqkMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.CSfxnyyqjsqk" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sfxid" property="sfxid" jdbcType="VARCHAR" />
+    <result column="nqsl" property="nqsl" jdbcType="INTEGER" />
+    <result column="nqmc" property="nqmc" jdbcType="VARCHAR" />
+    <result column="sjjgqyxx" property="sjjgqyxx" jdbcType="VARCHAR" />
+    <result column="wfhd" property="wfhd" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sfxid, nqsl, nqmc, sjjgqyxx, wfhd
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_sfxnyyqjsqk
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from c_sfxnyyqjsqk
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.CSfxnyyqjsqk" >
+    insert into c_sfxnyyqjsqk (id, sfxid, nqsl, 
+      nqmc, sjjgqyxx, wfhd
+      )
+    values (#{id,jdbcType=INTEGER}, #{sfxid,jdbcType=VARCHAR}, #{nqsl,jdbcType=INTEGER}, 
+      #{nqmc,jdbcType=VARCHAR}, #{sjjgqyxx,jdbcType=VARCHAR}, #{wfhd,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.CSfxnyyqjsqk" >
+    insert into c_sfxnyyqjsqk
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sfxid != null" >
+        sfxid,
+      </if>
+      <if test="nqsl != null" >
+        nqsl,
+      </if>
+      <if test="nqmc != null" >
+        nqmc,
+      </if>
+      <if test="sjjgqyxx != null" >
+        sjjgqyxx,
+      </if>
+      <if test="wfhd != null" >
+        wfhd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sfxid != null" >
+        #{sfxid,jdbcType=VARCHAR},
+      </if>
+      <if test="nqsl != null" >
+        #{nqsl,jdbcType=INTEGER},
+      </if>
+      <if test="nqmc != null" >
+        #{nqmc,jdbcType=VARCHAR},
+      </if>
+      <if test="sjjgqyxx != null" >
+        #{sjjgqyxx,jdbcType=VARCHAR},
+      </if>
+      <if test="wfhd != null" >
+        #{wfhd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.CSfxnyyqjsqk" >
+    update c_sfxnyyqjsqk
+    <set >
+      <if test="sfxid != null" >
+        sfxid = #{sfxid,jdbcType=VARCHAR},
+      </if>
+      <if test="nqsl != null" >
+        nqsl = #{nqsl,jdbcType=INTEGER},
+      </if>
+      <if test="nqmc != null" >
+        nqmc = #{nqmc,jdbcType=VARCHAR},
+      </if>
+      <if test="sjjgqyxx != null" >
+        sjjgqyxx = #{sjjgqyxx,jdbcType=VARCHAR},
+      </if>
+      <if test="wfhd != null" >
+        wfhd = #{wfhd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.CSfxnyyqjsqk" >
+    update c_sfxnyyqjsqk
+    set sfxid = #{sfxid,jdbcType=VARCHAR},
+      nqsl = #{nqsl,jdbcType=INTEGER},
+      nqmc = #{nqmc,jdbcType=VARCHAR},
+      sjjgqyxx = #{sjjgqyxx,jdbcType=VARCHAR},
+      wfhd = #{wfhd,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByExample"  resultMap="BaseResultMap" parameterType="java.lang.String">
+  select
+  <include refid="Base_Column_List"/>
+  from c_sfxnyyqjsqk
+    where sfxid = #{sfxid,jdbcType=VARCHAR}
+  </select>
+  <update id="updateByForeignKey" parameterType="com.ssm.model.CSfxnyyqjsqk">
+   update c_sfxnyyqjsqk
+    set 
+      nqsl = #{nqsl,jdbcType=INTEGER},
+      nqmc = #{nqmc,jdbcType=VARCHAR},
+      sjjgqyxx = #{sjjgqyxx,jdbcType=VARCHAR},
+      wfhd = #{wfhd,jdbcType=VARCHAR}
+    where  sfxid = #{sfxid,jdbcType=VARCHAR}
+  
+  </update>
+</mapper>

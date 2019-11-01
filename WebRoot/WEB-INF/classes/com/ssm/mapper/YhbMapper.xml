@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.YhbDao">
+	<resultMap type="Yhb" id="YhbResult">
+
+		<result property="a_dcrid" column="a_dcrid" />
+		<result property="a_qx" column="a_qx" />
+		<result property="a_xm" column="a_xm" />
+		<result property="a_kl" column="a_kl" />
+
+
+
+	</resultMap>
+
+ <select id="login" parameterType="com.ssm.model.Yhb" resultMap="YhbResult">
+    select * from a_yhb where a_xm=#{a_xm} and a_kl=#{a_kl}
+ 
+ </select>
+
+
+</mapper>

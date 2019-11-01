@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.AWjxxMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.AWjxx" >
+    <id column="a_wjid" property="aWjid" jdbcType="VARCHAR" />
+    <result column="a_wjbm" property="aWjbm" jdbcType="VARCHAR" />
+    
+    <!-- 由于修改了调查人id的数据类型，因此由原来的integer改为varchar -->
+    <result column="a_dcrid" property="aDcrid" jdbcType="VARCHAR" />
+    
+    
+    <result column="a_bfzxm" property="aBfzxm" jdbcType="VARCHAR" />
+    <result column="a_bfzlxfs" property="aBfzlxfs" jdbcType="VARCHAR" />
+    <result column="a_bfznl" property="aBfznl" jdbcType="TINYINT" />
+    <result column="a_sf" property="aSf" jdbcType="VARCHAR" />
+    <result column="a_city" property="aCity" jdbcType="VARCHAR" />
+    <result column="a_xian" property="aXian" jdbcType="VARCHAR" />
+    <result column="a_xiang" property="aXiang" jdbcType="VARCHAR" />
+    <result column="a_cun" property="aCun" jdbcType="VARCHAR" />
+    <result column="a_xueli" property="aXueli" jdbcType="VARCHAR" />
+    <result column="a_sclx" property="aSclx" jdbcType="VARCHAR" />
+    <result column="a_sfzcpp" property="aSfzcpp" jdbcType="VARCHAR" />
+    <result column="a_ppmc" property="aPpmc" jdbcType="VARCHAR" />
+    <result column="a_sfck" property="aSfck" jdbcType="VARCHAR" />
+    
+    <result column="a_jyztlx" property="aJyztlx" jdbcType="VARCHAR" />
+    <result column="a_zw" property="aZw" jdbcType="VARCHAR" />
+    <result column="a_gdmj" property="aGdmj" jdbcType="VARCHAR" />
+    <result column="a_scfs" property="aScfs" jdbcType="VARCHAR" />
+    <result column="a_zcbz" property="aZcbz" jdbcType="VARCHAR" />
+    <result column="a_qita" property="aQita" jdbcType="VARCHAR" />
+    
+      <result column="a_createTime" property="aCreateTime" jdbcType="VARCHAR" />
+     <result column="a_bigtype" property="aBigtype" jdbcType="VARCHAR" />
+     
+      <result column="a_zhprovince" property="aZhprovince" jdbcType="VARCHAR" />
+     <result column="a_zhcity" property="aZhcity" jdbcType="VARCHAR" />
+     <result column="a_zhcounty" property="aZhcounty" jdbcType="VARCHAR" />
+     
+     <!-- thomas added 为了显示调查人真实姓名 2018-7-1 -->
+     <result column="a_realname" property="aDcrRealname" jdbcType="VARCHAR" />
+     
+  </resultMap>
+  
+		<!--   /**
+			 * zt 
+			 * 主要产品销售渠道及价格查询
+			 */ -->
+	 
+    <resultMap id="BaseResultMap1" type="com.ssm.vo.SearchProductVo" >
+	    <result column="a_sf" property="province" jdbcType="VARCHAR" />
+	    <result column="a_sclx" property="type" jdbcType="VARCHAR" />  
+	      <result column="a_createTime" property="year" jdbcType="VARCHAR" />
+	     <result column="a_bigtype" property="bigType" jdbcType="VARCHAR" />    
+	   <!--   b.a_cplx(a产品流向),b.a_xssj(a销售时间),b.a_xsjg(a销售价格),b.a_xsl(a销售量) -->
+	     <result column="a_cplx" property="proDirection" jdbcType="VARCHAR" />
+	     <result column="a_xssj" property="proSellTime" jdbcType="VARCHAR" />
+	      <result column="a_xsjg" property="proSellPrice" jdbcType="VARCHAR" />
+	      <result column="a_xsl" property="proSellVolume" jdbcType="VARCHAR" />
+  </resultMap>
+  
+   <resultMap id="BaseResultMap2" type="com.ssm.vo.searchTechVo" >
+	    <result column="a_sf" property="province" jdbcType="VARCHAR" />
+	    <result column="a_sclx" property="type" jdbcType="VARCHAR" />  
+	      <result column="a_createTime" property="aCreateTime" jdbcType="VARCHAR" />
+	     <result column="a_bigtype" property="bigType" jdbcType="VARCHAR" />    
+	  
+	     <result column="a_xssj" property="techType" jdbcType="VARCHAR" />
+	      <result column="a_xyjspj" property="techAssess" jdbcType="VARCHAR" />
+	      <result column="a_xjspj" property="needAccess" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    a_wjid, a_wjbm, a_dcrid, a_bfzxm, a_bfzlxfs, a_bfznl, a_sf, a_city, a_xian, a_xiang, 
+    a_cun, a_xueli, a_sclx, a_sfzcpp, a_ppmc, a_sfck, a_jyztlx, a_zw, a_gdmj, a_scfs, a_zcbz, a_qita, a_createTime, 
+    a_bigtype, a_zhprovince, a_zhcity, a_zhcounty
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_wjxx
+    where a_wjid = #{aWjid,jdbcType=VARCHAR}
+  </select>
+  <!-- 主要产品销售渠道及价格查询 -->
+      <select id="searchProducts" resultMap="BaseResultMap1" parameterType="com.ssm.model.AWjxx" >
+	    select a.a_sf,a.a_createtime,a.a_bigtype,a.a_sclx,b.a_cplx,b.a_xssj,b.a_xsjg,b.a_xsl from a_wjxx a right join a_xsqdjg b on a.a_wjid=b.a_wjid 
+	    
+	     where a.a_sf like CONCAT('%',#{aSf},'%') and a.a_createTime like CONCAT('%',#{aCreateTime},'%')
+	    	and a.a_sclx like CONCAT('%',#{aSclx},'%') and a.a_bigtype like CONCAT('%',#{aBigType},'%')
+  </select>
+  
+<!--   技术需求与技术供给情况查询 -->
+     <select id="searchTech" resultMap="BaseResultMap2" parameterType="com.ssm.model.AWjxx" >
+	    select a.a_sf,a.a_createtime,a.a_bigtype,a.a_sclx,b.a_jslx,b.a_xyjspj,b.a_xjspj from a_wjxx a right join a_jsxqgg b on a.a_wjid=b.a_wjid 
+	    
+	     where a.a_sf like CONCAT('%',#{aSf},'%') and a.a_createTime like CONCAT('%',#{aCreateTime},'%')
+	    	and a.a_sclx like CONCAT('%',#{aSclx},'%') and a.a_bigtype like CONCAT('%',#{aBigType},'%')
+  </select>
+  <!-- 条件查询 -->
+  <select id="select" resultMap="BaseResultMap" parameterType="com.ssm.model.AWjxx" >
+    select
+    <include refid="Base_Column_List" />
+    from a_wjxx
+    
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from a_wjxx
+    where a_wjid = #{aWjid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.AWjxx" >
+    insert into a_wjxx (a_wjid, a_wjbm, a_dcrid, 
+      a_bfzxm, a_bfzlxfs, a_bfznl, 
+      a_sf, a_city, a_xian, 
+      a_xiang, a_cun, a_xueli, 
+      a_sclx, a_sfzcpp, a_ppmc, 
+      a_sfck, a_jyztlx, a_zw,
+      a_gdmj, a_scfs, a_zcbz, 
+      a_qita, a_createTime,a_bigtype, 
+      a_zhprovince, a_zhcity, a_zhcounty
+     )
+    values (#{aWjid,jdbcType=VARCHAR}, #{aWjbm,jdbcType=VARCHAR}, #{aDcrid,jdbcType=VARCHAR}, 
+      #{aBfzxm,jdbcType=VARCHAR}, #{aBfzlxfs,jdbcType=INTEGER}, #{aBfznl,jdbcType=TINYINT}, 
+      #{aSf,jdbcType=VARCHAR}, #{aCity,jdbcType=VARCHAR}, #{aXian,jdbcType=VARCHAR}, 
+      #{aXiang,jdbcType=VARCHAR}, #{aCun,jdbcType=VARCHAR}, #{aXueli,jdbcType=VARCHAR}, 
+      #{aSclx,jdbcType=VARCHAR}, #{aSfzcpp,jdbcType=VARCHAR}, #{aPpmc,jdbcType=VARCHAR}, 
+      #{aSfck,jdbcType=VARCHAR}, #{aJyztlx,jdbcType=VARCHAR}, #{aZw,jdbcType=VARCHAR},
+      #{aGdmj,jdbcType=VARCHAR}, #{aScfs,jdbcType=VARCHAR},#{aZcbz,jdbcType=VARCHAR},
+      #{aQita,jdbcType=VARCHAR},#{aCreateTime,jdbcType=VARCHAR}, #{aBigtype,jdbcType=VARCHAR}
+      ,#{aZhprovince,jdbcType=VARCHAR}, #{aZhcity,jdbcType=VARCHAR}, #{aZhcounty,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.AWjxx" >
+    insert into a_wjxx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aWjid != null" >
+        a_wjid,
+      </if>
+      <if test="aWjbm != null" >
+        a_wjbm,
+      </if>
+      <if test="aDcrid != null" >
+        a_dcrid,
+      </if>
+      <if test="aBfzxm != null" >
+        a_bfzxm,
+      </if>
+      <if test="aBfzlxfs != null" >
+        a_bfzlxfs,
+      </if>
+      <if test="aBfznl != null" >
+        a_bfznl,
+      </if>
+      <if test="aSf != null" >
+        a_sf,
+      </if>
+      <if test="aCity != null" >
+        a_city,
+      </if>
+      <if test="aXian != null" >
+        a_xian,
+      </if>
+      <if test="aXiang != null" >
+        a_xiang,
+      </if>
+      <if test="aCun != null" >
+        a_cun,
+      </if>
+      <if test="aXueli != null" >
+        a_xueli,
+      </if>
+      <if test="aSclx != null" >
+        a_sclx,
+      </if>
+      <if test="aSfzcpp != null" >
+        a_sfzcpp,
+      </if>
+      <if test="aPpmc != null" >
+        a_ppmc,
+      </if>
+      <if test="aSfck != null" >
+        a_sfck,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aWjid != null" >
+        #{aWjid,jdbcType=VARCHAR},
+      </if>
+      <if test="aWjbm != null" >
+        #{aWjbm,jdbcType=VARCHAR},
+      </if>
+      <if test="aDcrid != null" >
+        #{aDcrid,jdbcType=VARCHAR},
+      </if>
+      <if test="aBfzxm != null" >
+        #{aBfzxm,jdbcType=VARCHAR},
+      </if>
+      <if test="aBfzlxfs != null" >
+        #{aBfzlxfs,jdbcType=INTEGER},
+      </if>
+      <if test="aBfznl != null" >
+        #{aBfznl,jdbcType=TINYINT},
+      </if>
+      <if test="aSf != null" >
+        #{aSf,jdbcType=VARCHAR},
+      </if>
+      <if test="aCity != null" >
+        #{aCity,jdbcType=VARCHAR},
+      </if>
+      <if test="aXian != null" >
+        #{aXian,jdbcType=VARCHAR},
+      </if>
+      <if test="aXiang != null" >
+        #{aXiang,jdbcType=VARCHAR},
+      </if>
+      <if test="aCun != null" >
+        #{aCun,jdbcType=VARCHAR},
+      </if>
+      <if test="aXueli != null" >
+        #{aXueli,jdbcType=VARCHAR},
+      </if>
+      <if test="aSclx != null" >
+        #{aSclx,jdbcType=VARCHAR},
+      </if>
+      <if test="aSfzcpp != null" >
+        #{aSfzcpp,jdbcType=VARCHAR},
+      </if>
+      <if test="aPpmc != null" >
+        #{aPpmc,jdbcType=VARCHAR},
+      </if>
+      <if test="aSfck != null" >
+        #{aSfck,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.AWjxx" >
+    update a_wjxx
+    <set >
+      <if test="aWjbm != null" >
+        a_wjbm = #{aWjbm,jdbcType=VARCHAR},
+      </if>
+      <if test="aDcrid != null" >
+        a_dcrid = #{aDcrid,jdbcType=VARCHAR},
+      </if>
+      <if test="aBfzxm != null" >
+        a_bfzxm = #{aBfzxm,jdbcType=VARCHAR},
+      </if>
+      <if test="aBfzlxfs != null" >
+        a_bfzlxfs = #{aBfzlxfs,jdbcType=INTEGER},
+      </if>
+      <if test="aBfznl != null" >
+        a_bfznl = #{aBfznl,jdbcType=TINYINT},
+      </if>
+      <if test="aSf != null" >
+        a_sf = #{aSf,jdbcType=VARCHAR},
+      </if>
+      <if test="aCity != null" >
+        a_city = #{aCity,jdbcType=VARCHAR},
+      </if>
+      <if test="aXian != null" >
+        a_xian = #{aXian,jdbcType=VARCHAR},
+      </if>
+      <if test="aXiang != null" >
+        a_xiang = #{aXiang,jdbcType=VARCHAR},
+      </if>
+      <if test="aCun != null" >
+        a_cun = #{aCun,jdbcType=VARCHAR},
+      </if>
+      <if test="aXueli != null" >
+        a_xueli = #{aXueli,jdbcType=VARCHAR},
+      </if>
+      <if test="aSclx != null" >
+        a_sclx = #{aSclx,jdbcType=VARCHAR},
+      </if>
+      <if test="aSfzcpp != null" >
+        a_sfzcpp = #{aSfzcpp,jdbcType=VARCHAR},
+      </if>
+      <if test="aPpmc != null" >
+        a_ppmc = #{aPpmc,jdbcType=VARCHAR},
+      </if>
+      <if test="aSfck != null" >
+        a_sfck = #{aSfck,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_wjid = #{aWjid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.AWjxx" >
+    update a_wjxx
+    set a_wjbm = #{aWjbm,jdbcType=VARCHAR},
+      <!-- a_dcrid = #{aDcrid,jdbcType=VARCHAR}, -->
+      a_bfzxm = #{aBfzxm,jdbcType=VARCHAR},
+      a_bfzlxfs = #{aBfzlxfs,jdbcType=INTEGER},
+      a_bfznl = #{aBfznl,jdbcType=TINYINT},
+      a_sf = #{aSf,jdbcType=VARCHAR},
+      a_city = #{aCity,jdbcType=VARCHAR},
+      a_xian = #{aXian,jdbcType=VARCHAR},
+      a_xiang = #{aXiang,jdbcType=VARCHAR},
+      a_cun = #{aCun,jdbcType=VARCHAR},
+      a_xueli = #{aXueli,jdbcType=VARCHAR},
+      a_sclx = #{aSclx,jdbcType=VARCHAR},
+      a_sfzcpp = #{aSfzcpp,jdbcType=VARCHAR},
+      a_ppmc = #{aPpmc,jdbcType=VARCHAR},
+      a_sfck = #{aSfck,jdbcType=VARCHAR},
+      a_createTime = #{aCreateTime,jdbcType=VARCHAR},
+      a_bigtype = #{aBigtype,jdbcType=VARCHAR},
+      a_zhprovince = #{aZhprovince,jdbcType=VARCHAR},
+      a_zhcity = #{aZhcity,jdbcType=VARCHAR},
+      a_zhcounty = #{aZhcounty,jdbcType=VARCHAR}
+    where a_wjid = #{aWjid,jdbcType=VARCHAR}
+  </update>
+  <select id="findAllQuestionlist" resultMap="BaseResultMap"  parameterType="java.util.List">
+    Select w.*,a.a_realname From a_wjxx w 
+    Left Join a_yhb a 
+    On w.a_dcrid = a.a_dcrid
+    where w.a_dcrid in 
+          <foreach collection="list" index="index" item="AYhb" open="(" separator="," close=")">  
+            #{AYhb.aDcrid}  
+        </foreach>
+    
+  </select>
+  <select id="searchQuestionlistByCondition" resultMap="BaseResultMap" parameterType="com.ssm.vo.AWjxxVo" >
+    Select w.*,a.a_realname From a_wjxx w 
+    Left Join a_yhb a 
+    On w.a_dcrid = a.a_dcrid
+    <where>
+    <if test="awjxx.aWjbm != null and awjxx.aWjbm !=''" >
+        and w.a_wjbm like '%${awjxx.aWjbm}%'
+      </if>
+      <if test="awjxx.aWjid != null and awjxx.aWjid !=''" >
+        and w.a_wjid = #{awjxx.aWjid}
+      </if>
+      <if test="awjxx.aDcrid != null and awjxx.aDcrid !=''" >
+        and w.a_dcrid =  #{awjxx.aDcrid,jdbcType=VARCHAR}
+      </if>
+      <if test="awjxx.aBfzxm != null and awjxx.aBfzxm !=''" >
+        and w.a_bfzxm like '%${awjxx.aBfzxm}%'  
+      </if>
+      <if test="awjxx.aBfzlxfs != null and awjxx.aBfzlxfs !=''" >
+        and w.a_bfzlxfs = #{awjxx.aBfzlxfs,jdbcType=INTEGER}
+      </if>
+      <if test="awjxx.aBfznl != null and awjxx.aBfznl !=''" >
+        and w.a_bfznl = #{awjxx.aBfznl,jdbcType=TINYINT}
+      </if>
+      <if test="awjxx.aSf != null and awjxx.aSf !=''" >
+        and w.a_sf = #{awjxx.aSf,jdbcType=VARCHAR}
+      </if>
+      <if test="awjxx.aCity != null and awjxx.aCity !=''" >
+        and w.a_city = #{awjxx.aCity,jdbcType=VARCHAR}
+      </if>
+      <if test="awjxx.aXian != null and awjxx.aXian !=''" >
+        and w.a_xian = #{awjxx.aXian,jdbcType=VARCHAR}
+      </if>
+      <if test="awjxx.aXiang != null and awjxx.aXiang !=''" >
+        and w.a_xiang = #{awjxx.aXiang,jdbcType=VARCHAR}
+      </if>
+      <if test="awjxx.aCun != null and awjxx.aCun !=''" >
+        and w.a_cun = #{awjxx.aCun,jdbcType=VARCHAR}
+      </if>
+      <if test="awjxx.aXueli != null and awjxx.aXueli !=''" >
+        and w.a_xueli = #{awjxx.aXueli,jdbcType=VARCHAR}
+      </if>
+      <if test="awjxx.aSclx != null and awjxx.aSclx !=''" >
+        and w.a_sclx = #{awjxx.aSclx,jdbcType=VARCHAR}
+      </if>
+      <if test="awjxx.aSfzcpp != null and awjxx.aSfzcpp !=''" >
+        and w.a_sfzcpp = #{awjxx.aSfzcpp,jdbcType=VARCHAR}
+      </if>
+      <if test="awjxx.aPpmc != null and awjxx.aPpmc !=''" >
+        and w.a_ppmc = #{awjxx.aPpmc,jdbcType=VARCHAR}
+      </if>
+      <if test="awjxx.aSfck != null and awjxx.aSfck !=''" >
+        and w.a_sfck = #{awjxx.aSfck,jdbcType=VARCHAR}
+      </if>
+      <if test="awjxx.aZhprovince != null and awjxx.aZhprovince !=''" >
+        and w.a_zhprovince = #{awjxx.aZhprovince,jdbcType=VARCHAR}
+      </if>
+      <if test="awjxx.aZhcity != null and awjxx.aZhcity !=''" >
+        and w.a_zhcity = #{awjxx.aZhcity,jdbcType=VARCHAR}
+      </if>
+      <if test="awjxx.aZhcounty != null and awjxx.aZhcounty !=''" >
+        and w.a_zhcounty = #{awjxx.aZhcounty,jdbcType=VARCHAR}
+      </if>
+       <if test="awjxx.aDcsjQi != null and awjxx.aDcsjQi != '' ">
+            AND
+            w.a_createTime&gt;=#{awjxx.aDcsjQi}
+        </if>
+        <if test="awjxx.aDcsjZhi != null and awjxx.aDcsjZhi != '' ">
+            AND
+            w.a_createTime&lt;=#{awjxx.aDcsjZhi}
+        </if>
+      and w.a_dcrid in 
+          <foreach collection="userlist" index="index" item="AYhb" open="(" separator="," close=")">  
+            #{AYhb.aDcrid}  
+        </foreach>
+    </where>
+  </select>
+  
+    <select id="selectBySomeInfo" resultMap="BaseResultMap" parameterType="com.ssm.model.AWjxx" >
+   <!--  select * from a_wjxx where a_sf=#{aSf} and a_createTime=#{aCreateTime} and a_sclx=#{aSclx}; -->
+    select * from a_wjxx where a_sf like CONCAT('%',#{aSf},'%') and a_createTime like CONCAT('%',#{aCreateTime},'%')
+    and a_sclx like CONCAT('%',#{aSclx},'%') and a_bigtype like CONCAT('%',#{aBigtype},'%')
+  </select>
+  
+</mapper>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.AYhbMapper">
+  <resultMap id="BaseResultMap" type="com.ssm.model.AYhb">
+    <id column="a_dcrid" jdbcType="VARCHAR" property="aDcrid" />
+    <result column="a_kl" jdbcType="VARCHAR" property="aKl" />
+    <result column="a_xm" jdbcType="VARCHAR" property="aXm" />
+    <result column="a_lxfs" jdbcType="CHAR" property="aLxfs" />
+    <result column="a_zm" jdbcType="VARCHAR" property="aZm" />
+    <result column="a_email" jdbcType="VARCHAR" property="aEmail" />
+    <result column="a_qq" jdbcType="CHAR" property="aQq" />
+    <result column="a_province" jdbcType="VARCHAR" property="aProvince" />
+    <result column="a_city" jdbcType="VARCHAR" property="aCity" />
+    <result column="a_country" jdbcType="VARCHAR" property="aCountry" />
+    <result column="a_root" jdbcType="INTEGER" property="aRoot" />
+    <result column="a_bumenid" jdbcType="INTEGER" property="aBumenid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    a_dcrid, a_kl, a_xm, a_lxfs, a_zm, a_email, a_qq, a_province, a_city, a_country, 
+    a_root, a_bumenid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from a_yhb
+    where a_dcrid = #{aDcrid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from a_yhb
+    where a_dcrid = #{aDcrid,jdbcType=VARCHAR}
+    
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.AYhb">
+    insert into a_yhb (a_dcrid, a_kl, a_xm, 
+      a_lxfs, a_zm, a_email, a_qq, 
+      a_province, a_city, a_country, 
+      a_root, a_bumenid)
+    values (#{aDcrid,jdbcType=VARCHAR}, #{aKl,jdbcType=VARCHAR}, #{aXm,jdbcType=VARCHAR}, 
+      #{aLxfs,jdbcType=CHAR}, #{aZm,jdbcType=VARCHAR}, #{aEmail,jdbcType=VARCHAR}, #{aQq,jdbcType=CHAR}, 
+      #{aProvince,jdbcType=VARCHAR}, #{aCity,jdbcType=VARCHAR}, #{aCountry,jdbcType=VARCHAR}, 
+      #{aRoot,jdbcType=INTEGER}, #{aBumenid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.AYhb">
+    insert into a_yhb
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="aDcrid != null">
+        a_dcrid,
+      </if>
+      <if test="aKl != null">
+        a_kl,
+      </if>
+      <if test="aXm != null">
+        a_xm,
+      </if>
+      <if test="aLxfs != null">
+        a_lxfs,
+      </if>
+      <if test="aZm != null">
+        a_zm,
+      </if>
+      <if test="aEmail != null">
+        a_email,
+      </if>
+      <if test="aQq != null">
+        a_qq,
+      </if>
+      <if test="aProvince != null">
+        a_province,
+      </if>
+      <if test="aCity != null">
+        a_city,
+      </if>
+      <if test="aCountry != null">
+        a_country,
+      </if>
+      <if test="aRoot != null">
+        a_root,
+      </if>
+      <if test="aBumenid != null">
+        a_bumenid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="aDcrid != null">
+        #{aDcrid,jdbcType=VARCHAR},
+      </if>
+      <if test="aKl != null">
+        #{aKl,jdbcType=VARCHAR},
+      </if>
+      <if test="aXm != null">
+        #{aXm,jdbcType=VARCHAR},
+      </if>
+      <if test="aLxfs != null">
+        #{aLxfs,jdbcType=CHAR},
+      </if>
+      <if test="aZm != null">
+        #{aZm,jdbcType=VARCHAR},
+      </if>
+      <if test="aEmail != null">
+        #{aEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="aQq != null">
+        #{aQq,jdbcType=CHAR},
+      </if>
+      <if test="aProvince != null">
+        #{aProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="aCity != null">
+        #{aCity,jdbcType=VARCHAR},
+      </if>
+      <if test="aCountry != null">
+        #{aCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="aRoot != null">
+        #{aRoot,jdbcType=INTEGER},
+      </if>
+      <if test="aBumenid != null">
+        #{aBumenid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.AYhb">
+    update a_yhb
+    <set>
+      <if test="aKl != null">
+        a_kl = #{aKl,jdbcType=VARCHAR},
+      </if>
+      <if test="aXm != null">
+        a_xm = #{aXm,jdbcType=VARCHAR},
+      </if>
+      <if test="aLxfs != null">
+        a_lxfs = #{aLxfs,jdbcType=CHAR},
+      </if>
+      <if test="aZm != null">
+        a_zm = #{aZm,jdbcType=VARCHAR},
+      </if>
+      <if test="aEmail != null">
+        a_email = #{aEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="aQq != null">
+        a_qq = #{aQq,jdbcType=CHAR},
+      </if>
+      <if test="aProvince != null">
+        a_province = #{aProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="aCity != null">
+        a_city = #{aCity,jdbcType=VARCHAR},
+      </if>
+      <if test="aCountry != null">
+        a_country = #{aCountry,jdbcType=VARCHAR},
+      </if>
+      <if test="aRoot != null">
+        a_root = #{aRoot,jdbcType=INTEGER},
+      </if>
+      <if test="aBumenid != null">
+        a_bumenid = #{aBumenid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where a_dcrid = #{aDcrid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.AYhb">
+    update a_yhb
+    set a_kl = #{aKl,jdbcType=VARCHAR},
+      a_xm = #{aXm,jdbcType=VARCHAR},
+      a_lxfs = #{aLxfs,jdbcType=CHAR},
+      a_zm = #{aZm,jdbcType=VARCHAR},
+      a_email = #{aEmail,jdbcType=VARCHAR},
+      a_qq = #{aQq,jdbcType=CHAR},
+      a_province = #{aProvince,jdbcType=VARCHAR},
+      a_city = #{aCity,jdbcType=VARCHAR},
+      a_country = #{aCountry,jdbcType=VARCHAR},
+      a_root = #{aRoot,jdbcType=INTEGER},
+      a_bumenid = #{aBumenid,jdbcType=INTEGER}
+    where a_dcrid = #{aDcrid,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByPrimaryName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_yhb
+    where a_xm = #{aXm,jdbcType=VARCHAR}
+  </select>
+   <select id="selectByprimaryListName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_yhb
+    
+  </select>
+   <select id="selectByidname" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_yhb
+    where a_dcrid = #{aDcrid,jdbcType=VARCHAR} and a_kl = #{aKl,jdbcType=VARCHAR}
+  </select>
+  
+</mapper>

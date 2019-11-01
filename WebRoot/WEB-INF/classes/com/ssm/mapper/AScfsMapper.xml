@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.AScfsMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.AScfs" >
+    <id column="a_scfsid" property="aScfsid" jdbcType="INTEGER" />
+    <result column="a_scfsmc" property="aScfsmc" jdbcType="VARCHAR" />
+    <result column="a_wjid" property="aWjid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    a_scfsid, a_scfsmc, a_wjid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_scfs
+    where a_scfsid = #{aScfsid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from a_scfs
+    where a_scfsid = #{aScfsid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.AScfs" >
+    insert into a_scfs (a_scfsid, a_scfsmc, a_wjid
+      )
+    values (#{aScfsid,jdbcType=INTEGER}, #{aScfsmc,jdbcType=VARCHAR}, #{aWjid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.AScfs" >
+    insert into a_scfs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aScfsid != null" >
+        a_scfsid,
+      </if>
+      <if test="aScfsmc != null" >
+        a_scfsmc,
+      </if>
+      <if test="aWjid != null" >
+        a_wjid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aScfsid != null" >
+        #{aScfsid,jdbcType=INTEGER},
+      </if>
+      <if test="aScfsmc != null" >
+        #{aScfsmc,jdbcType=VARCHAR},
+      </if>
+      <if test="aWjid != null" >
+        #{aWjid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.AScfs" >
+    update a_scfs
+    <set >
+      <if test="aScfsmc != null" >
+        a_scfsmc = #{aScfsmc,jdbcType=VARCHAR},
+      </if>
+      <if test="aWjid != null" >
+        a_wjid = #{aWjid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_scfsid = #{aScfsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.AScfs" >
+    update a_scfs
+    set a_scfsmc = #{aScfsmc,jdbcType=VARCHAR},
+      a_wjid = #{aWjid,jdbcType=VARCHAR}
+    where a_scfsid = #{aScfsid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.CSfxjcxxMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.CSfxjcxx" >
+    <id column="a_sfxId" property="aSfxid" jdbcType="VARCHAR" />
+    <result column="a_dcr" property="aDcr" jdbcType="VARCHAR" />
+    <result column="a_lxdh" property="aLxdh" jdbcType="VARCHAR" />
+    <result column="a_dcsj" property="aDcsj" jdbcType="DATE" />
+    <result column="a_zhsyzwjfzryx" property="aZhsyzwjfzryx" jdbcType="VARCHAR" />
+    <result column="a_sf" property="aSf" jdbcType="VARCHAR" />
+    <result column="a_city" property="aCity" jdbcType="VARCHAR" />
+    <result column="a_xian" property="aXian" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="City" property="city" jdbcType="VARCHAR" />
+    <result column="xian" property="xian" jdbcType="VARCHAR" />
+    
+    
+    <!-- thomas added 为了显示调查人真实姓名 2018-7-1 -->
+     <result column="a_realname" property="aDcrRealname" jdbcType="VARCHAR" />
+
+  </resultMap>
+  <sql id="Base_Column_List" >
+    a_sfxId, a_dcr, a_lxdh, a_dcsj, a_zhsyzwjfzryx, a_sf, a_city, a_xian ,province, City, xian
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select w.*,a.a_realname
+   <!--  <include refid="Base_Column_List" /> -->
+    from c_sfxjcxx   w
+    Left Join a_yhb a 
+    On w.a_dcr = a.a_dcrid
+    where a_sfxId = #{aSfxid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from c_sfxjcxx
+    where a_sfxId = #{aSfxid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.CSfxjcxx" >
+    insert into c_sfxjcxx (a_sfxId, a_dcr, a_lxdh, 
+      a_dcsj, a_zhsyzwjfzryx, a_sf, 
+      a_city, a_xian,province, City, xian)
+    values (#{aSfxid,jdbcType=VARCHAR}, #{aDcr,jdbcType=VARCHAR}, #{aLxdh,jdbcType=VARCHAR}, 
+      #{aDcsj,jdbcType=DATE}, #{aZhsyzwjfzryx,jdbcType=VARCHAR}, #{aSf,jdbcType=VARCHAR}, 
+      #{aCity,jdbcType=VARCHAR}, #{aXian,jdbcType=VARCHAR},#{province,jdbcType=VARCHAR},
+      #{city,jdbcType=VARCHAR},#{xian,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.CSfxjcxx" >
+    insert into c_sfxjcxx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aSfxid != null" >
+        a_sfxId,
+      </if>
+      <if test="aDcr != null" >
+        a_dcr,
+      </if>
+      <if test="aLxdh != null" >
+        a_lxdh,
+      </if>
+      <if test="aDcsj != null" >
+        a_dcsj,
+      </if>
+      <if test="aZhsyzwjfzryx != null" >
+        a_zhsyzwjfzryx,
+      </if>
+      <if test="aSf != null" >
+        a_sf,
+      </if>
+      <if test="aCity != null" >
+        a_city,
+      </if>
+      <if test="aXian != null" >
+        a_xian,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        City,
+      </if>
+      <if test="xian != null" >
+        xian,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aSfxid != null" >
+        #{aSfxid,jdbcType=VARCHAR},
+      </if>
+      <if test="aDcr != null" >
+        #{aDcr,jdbcType=VARCHAR},
+      </if>
+      <if test="aLxdh != null" >
+        #{aLxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="aDcsj != null" >
+        #{aDcsj,jdbcType=DATE},
+      </if>
+      <if test="aZhsyzwjfzryx != null" >
+        #{aZhsyzwjfzryx,jdbcType=VARCHAR},
+      </if>
+      <if test="aSf != null" >
+        #{aSf,jdbcType=VARCHAR},
+      </if>
+      <if test="aCity != null" >
+        #{aCity,jdbcType=VARCHAR},
+      </if>
+      <if test="aXian != null" >
+        #{aXian,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="City != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="Xian != null" >
+        #{xian,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.CSfxjcxx" >
+    update c_sfxjcxx
+    <set >
+      <if test="aDcr != null" >
+        a_dcr = #{aDcr,jdbcType=VARCHAR},
+      </if>
+      <if test="aLxdh != null" >
+        a_lxdh = #{aLxdh,jdbcType=VARCHAR},
+      </if>
+      <if test="aDcsj != null" >
+        a_dcsj = #{aDcsj,jdbcType=DATE},
+      </if>
+      <if test="aZhsyzwjfzryx != null" >
+        a_zhsyzwjfzryx = #{aZhsyzwjfzryx,jdbcType=VARCHAR},
+      </if>
+      <if test="aSf != null" >
+        a_sf = #{aSf,jdbcType=VARCHAR},
+      </if>
+      <if test="aCity != null" >
+        a_city = #{aCity,jdbcType=VARCHAR},
+      </if>
+      <if test="aXian != null" >
+        a_xian = #{aXian,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        City = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="xian != null" >
+        xian = #{xian,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_sfxId = #{aSfxid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.CSfxjcxx" >
+    update c_sfxjcxx
+    set a_dcr = #{aDcr,jdbcType=VARCHAR},
+      a_lxdh = #{aLxdh,jdbcType=VARCHAR},
+      a_dcsj = #{aDcsj,jdbcType=DATE},
+      a_zhsyzwjfzryx = #{aZhsyzwjfzryx,jdbcType=VARCHAR},
+      a_sf = #{aSf,jdbcType=VARCHAR},
+      a_city = #{aCity,jdbcType=VARCHAR},
+      a_xian = #{aXian,jdbcType=VARCHAR},
+      province=#{province,jdbcType=VARCHAR},
+      City=#{city,jdbcType=VARCHAR},
+     xian=#{xian,jdbcType=VARCHAR}
+    where a_sfxId = #{aSfxid,jdbcType=VARCHAR}
+  </update>
+   <select id="findAllDemonstrationXian" resultMap="BaseResultMap" parameterType="java.util.List" >
+    Select w.*,a.a_realname From c_sfxjcxx w 
+    Left Join a_yhb a 
+    On w.a_dcr = a.a_dcrid
+    where w.a_dcr in 
+    <foreach collection="list" index="index" item="AYhb" open="(" separator="," close=")">  
+            #{AYhb.aDcrid}  
+     </foreach>
+  </select>
+  <select id="searchDemonstrationXianByCondition" resultMap="BaseResultMap" parameterType="com.ssm.vo.CSfxjcxxVo" >
+    Select w.*,a.a_realname From c_sfxjcxx w 
+    Left Join a_yhb a 
+    On w.a_dcr = a.a_dcrid
+
+    <where>
+      <if test="csfxjcxx.aSfxid != null and csfxjcxx.aSfxid !=''" >
+        and w.a_sfxid = #{csfxjcxx.aSfxid}
+      </if>
+      <if test="csfxjcxx.aDcr != null and csfxjcxx.aDcr !=''" >
+        and w.a_dcr like '%${csfxjcxx.aDcr}%'
+      </if>
+      <if test="csfxjcxx.aLxdh != null and csfxjcxx.aLxdh !=''" >
+        and w.a_lxdh =  #{csfxjcxx.aLxdh}
+      </if>
+      
+      <if test="csfxjcxx.aDcsj != null and csfxjcxx.aDcsj !=''" >
+       and w.a_dcsj =  #{csfxjcxx.aDcsj}
+      </if>
+      <if test="csfxjcxx.aZhsyzwjfzryx != null and csfxjcxx.aZhsyzwjfzryx !=''" >
+       and w.a_zhsyzwjfzryx =  #{csfxjcxx.aZhsyzwjfzryx}
+      </if>
+      <if test="csfxjcxx.aSf != null and csfxjcxx.aSf !=''" >
+       and w.a_sf =  #{csfxjcxx.aSf}
+      </if>
+
+      <if test="csfxjcxx.aCity != null and csfxjcxx.aCity !=''" >
+        and w.a_city = #{csfxjcxx.aCity,jdbcType=VARCHAR}
+      </if>
+      <if test="csfxjcxx.aXian != null and csfxjcxx.aXian !=''" >
+        and w.a_xian = #{csfxjcxx.aXian,jdbcType=VARCHAR}
+      </if>
+      <if test="csfxjcxx.province != null and csfxjcxx.province !=''" >
+       and w.province =  #{csfxjcxx.province,jdbcType=VARCHAR}
+      </if>
+
+      <if test="csfxjcxx.city != null and csfxjcxx.city !=''" >
+        and w.City = #{csfxjcxx.city,jdbcType=VARCHAR}
+      </if>
+      <if test="csfxjcxx.xian != null and csfxjcxx.xian !=''" >
+        and w.xian = #{csfxjcxx.xian,jdbcType=VARCHAR}
+      </if>
+     <if test="csfxjcxx.aDcsjQi != null and csfxjcxx.aDcsjQi != '' ">
+            AND
+            w.a_dcsj&gt;=#{csfxjcxx.aDcsjQi}
+        </if>
+        <if test="csfxjcxx.aDcsjZhi != null and csfxjcxx.aDcsjZhi != '' ">
+            AND
+            w.a_dcsj&lt;=#{csfxjcxx.aDcsjZhi}
+        </if>
+     and w.a_dcr in 
+    <foreach collection="userlist" index="index" item="AYhb" open="(" separator="," close=")">  
+            #{AYhb.aDcrid}  
+    </foreach>
+    </where>
+  </select>
+</mapper>

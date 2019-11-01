@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.BScfsMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.BScfs" >
+    <id column="scfsId" property="scfsid" jdbcType="INTEGER" />
+    <result column="scfsmc" property="scfsmc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    scfsId, scfsmc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from b_scfs
+    where scfsId = #{scfsid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from b_scfs
+    where scfsId = #{scfsid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.BScfs" >
+    insert into b_scfs (scfsId, scfsmc)
+    values (#{scfsid,jdbcType=INTEGER}, #{scfsmc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.BScfs" >
+    insert into b_scfs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="scfsid != null" >
+        scfsId,
+      </if>
+      <if test="scfsmc != null" >
+        scfsmc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="scfsid != null" >
+        #{scfsid,jdbcType=INTEGER},
+      </if>
+      <if test="scfsmc != null" >
+        #{scfsmc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.BScfs" >
+    update b_scfs
+    <set >
+      <if test="scfsmc != null" >
+        scfsmc = #{scfsmc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where scfsId = #{scfsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.BScfs" >
+    update b_scfs
+    set scfsmc = #{scfsmc,jdbcType=VARCHAR}
+    where scfsId = #{scfsid,jdbcType=INTEGER}
+  </update>
+</mapper>

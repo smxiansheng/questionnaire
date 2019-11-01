@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.AScpzMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.AScpz" >
+    <id column="a_scid" property="aScid" jdbcType="INTEGER" />
+    <result column="a_wjid" property="aWjid" jdbcType="VARCHAR" />
+    <result column="a_scmc" property="aScmc" jdbcType="VARCHAR" />
+    <result column="a_scmj" property="aScmj" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    a_scid, a_wjid, a_scmc, a_scmj
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_scpz
+    where a_scid = #{aScid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from a_scpz
+    where a_scid = #{aScid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.AScpz" >
+    insert into a_scpz (a_scid, a_wjid, a_scmc, 
+      a_scmj)
+    values (#{aScid,jdbcType=INTEGER}, #{aWjid,jdbcType=VARCHAR}, #{aScmc,jdbcType=VARCHAR}, 
+      #{aScmj,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.AScpz" >
+    insert into a_scpz
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aScid != null" >
+        a_scid,
+      </if>
+      <if test="aWjid != null" >
+        a_wjid,
+      </if>
+      <if test="aScmc != null" >
+        a_scmc,
+      </if>
+      <if test="aScmj != null" >
+        a_scmj,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aScid != null" >
+        #{aScid,jdbcType=INTEGER},
+      </if>
+      <if test="aWjid != null" >
+        #{aWjid,jdbcType=VARCHAR},
+      </if>
+      <if test="aScmc != null" >
+        #{aScmc,jdbcType=VARCHAR},
+      </if>
+      <if test="aScmj != null" >
+        #{aScmj,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.AScpz" >
+    update a_scpz
+    <set >
+      <if test="aWjid != null" >
+        a_wjid = #{aWjid,jdbcType=VARCHAR},
+      </if>
+      <if test="aScmc != null" >
+        a_scmc = #{aScmc,jdbcType=VARCHAR},
+      </if>
+      <if test="aScmj != null" >
+        a_scmj = #{aScmj,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_scid = #{aScid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.AScpz" >
+    update a_scpz
+    set a_wjid = #{aWjid,jdbcType=VARCHAR},
+      a_scmc = #{aScmc,jdbcType=VARCHAR},
+      a_scmj = #{aScmj,jdbcType=VARCHAR}
+    where a_scid = #{aScid,jdbcType=INTEGER}
+  </update>
+</mapper>

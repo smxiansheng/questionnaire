@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.CSfxfzMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.CSfxfz" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sfxid" property="sfxid" jdbcType="VARCHAR" />
+    <result column="sfxcyfz" property="sfxcyfz" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sfxid, sfxcyfz
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from c_sfxfz
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from c_sfxfz
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.CSfxfz" >
+    insert into c_sfxfz (id, sfxid, sfxcyfz
+      )
+    values (#{id,jdbcType=INTEGER}, #{sfxid,jdbcType=VARCHAR}, #{sfxcyfz,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.CSfxfz" >
+    insert into c_sfxfz
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sfxid != null" >
+        sfxid,
+      </if>
+      <if test="sfxcyfz != null" >
+        sfxcyfz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sfxid != null" >
+        #{sfxid,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxcyfz != null" >
+        #{sfxcyfz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.CSfxfz" >
+    update c_sfxfz
+    <set >
+      <if test="sfxid != null" >
+        sfxid = #{sfxid,jdbcType=VARCHAR},
+      </if>
+      <if test="sfxcyfz != null" >
+        sfxcyfz = #{sfxcyfz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.CSfxfz" >
+    update c_sfxfz
+    set sfxid = #{sfxid,jdbcType=VARCHAR},
+      sfxcyfz = #{sfxcyfz,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByExample"  resultMap="BaseResultMap" parameterType="java.lang.String">
+  select
+  <include refid="Base_Column_List"/>
+  from c_sfxfz
+    where sfxid = #{sfxid,jdbcType=VARCHAR}
+  </select>
+  <update id="updateByForeignKey" parameterType="com.ssm.model.CSfxfz" >
+    update c_sfxfz
+    set   sfxcyfz = #{sfxcyfz,jdbcType=VARCHAR}
+    where sfxid = #{sfxid,jdbcType=VARCHAR}
+  
+  </update>
+         
+</mapper>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.BJyztlxMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.BJyztlx" >
+    <id column="jyztlxid" property="jyztlxid" jdbcType="INTEGER" />
+    <result column="jyztlxmc" property="jyztlxmc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    jyztlxid, jyztlxmc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from b_jyztlx
+    where jyztlxid = #{jyztlxid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from b_jyztlx
+    where jyztlxid = #{jyztlxid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.BJyztlx" >
+    insert into b_jyztlx (jyztlxid, jyztlxmc)
+    values (#{jyztlxid,jdbcType=INTEGER}, #{jyztlxmc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.BJyztlx" >
+    insert into b_jyztlx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="jyztlxid != null" >
+        jyztlxid,
+      </if>
+      <if test="jyztlxmc != null" >
+        jyztlxmc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="jyztlxid != null" >
+        #{jyztlxid,jdbcType=INTEGER},
+      </if>
+      <if test="jyztlxmc != null" >
+        #{jyztlxmc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.BJyztlx" >
+    update b_jyztlx
+    <set >
+      <if test="jyztlxmc != null" >
+        jyztlxmc = #{jyztlxmc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where jyztlxid = #{jyztlxid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.BJyztlx" >
+    update b_jyztlx
+    set jyztlxmc = #{jyztlxmc,jdbcType=VARCHAR}
+    where jyztlxid = #{jyztlxid,jdbcType=INTEGER}
+  </update>
+    <select id="findAllManagement" resultMap="BaseResultMap"  >
+    select * from b_jyztlx 
+  </select>
+<select id="searchManagementByName" resultMap="BaseResultMap" parameterType="String" >
+    select * from b_jyztlx 
+     <if test="_parameter != null" >
+       where jyztlxmc like '%${_parameter}%'
+     </if>
+     
+  </select>
+</mapper>

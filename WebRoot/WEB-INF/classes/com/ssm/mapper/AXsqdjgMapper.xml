@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.AXsqdjgMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.AXsqdjg" >
+    <id column="a_xsqdid" property="aXsqdid" jdbcType="VARCHAR" />
+    <result column="a_scmc" property="aScmc" jdbcType="VARCHAR" />
+    <result column="a_wjid" property="aWjid" jdbcType="VARCHAR" />
+    <result column="a_cplx" property="aCplx" jdbcType="VARCHAR" />
+    <result column="a_xssj" property="aXssj" jdbcType="VARCHAR" />
+    <result column="a_xsjg" property="aXsjg" jdbcType="VARCHAR" />
+    <result column="a_xsl" property="aXsl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    a_xsqdid, a_scmc, a_wjid, a_cplx, a_xssj, a_xsjg, a_xsl
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_xsqdjg
+    where a_xsqdid = #{aXsqdid,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 根据条件查询 -->
+  <select id="selectByTerm" resultMap="BaseResultMap" parameterType="com.ssm.model.AXsqdjg" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_xsqdjg
+    where a_wjid = #{aWjid,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- added by john 2018-7-1 -->
+  <select id="selectForUpdata" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_xsqdjg
+    where a_wjid = #{aWjid,jdbcType=VARCHAR}
+  </select>
+  
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from a_xsqdjg
+    where a_xsqdid = #{aXsqdid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.AXsqdjg" >
+    insert into a_xsqdjg (a_xsqdid, a_scmc, a_wjid, 
+      a_cplx, a_xssj, a_xsjg, 
+      a_xsl)
+    values (#{aXsqdid,jdbcType=VARCHAR}, #{aScmc,jdbcType=VARCHAR}, #{aWjid,jdbcType=VARCHAR}, 
+      #{aCplx,jdbcType=VARCHAR}, #{aXssj,jdbcType=VARCHAR}, #{aXsjg,jdbcType=VARCHAR}, 
+      #{aXsl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.AXsqdjg" >
+    insert into a_xsqdjg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aXsqdid != null" >
+        a_xsqdid,
+      </if>
+      <if test="aScmc != null" >
+        a_scmc,
+      </if>
+      <if test="aWjid != null" >
+        a_wjid,
+      </if>
+      <if test="aCplx != null" >
+        a_cplx,
+      </if>
+      <if test="aXssj != null" >
+        a_xssj,
+      </if>
+      <if test="aXsjg != null" >
+        a_xsjg,
+      </if>
+      <if test="aXsl != null" >
+        a_xsl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aXsqdid != null" >
+        #{aXsqdid,jdbcType=VARCHAR},
+      </if>
+      <if test="aScmc != null" >
+        #{aScmc,jdbcType=VARCHAR},
+      </if>
+      <if test="aWjid != null" >
+        #{aWjid,jdbcType=VARCHAR},
+      </if>
+      <if test="aCplx != null" >
+        #{aCplx,jdbcType=VARCHAR},
+      </if>
+      <if test="aXssj != null" >
+        #{aXssj,jdbcType=VARCHAR},
+      </if>
+      <if test="aXsjg != null" >
+        #{aXsjg,jdbcType=VARCHAR},
+      </if>
+      <if test="aXsl != null" >
+        #{aXsl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.AXsqdjg" >
+    update a_xsqdjg
+    <set >
+      <if test="aScmc != null" >
+        a_scmc = #{aScmc,jdbcType=VARCHAR},
+      </if>
+      <if test="aWjid != null" >
+        a_wjid = #{aWjid,jdbcType=VARCHAR},
+      </if>
+      <if test="aCplx != null" >
+        a_cplx = #{aCplx,jdbcType=VARCHAR},
+      </if>
+      <if test="aXssj != null" >
+        a_xssj = #{aXssj,jdbcType=VARCHAR},
+      </if>
+      <if test="aXsjg != null" >
+        a_xsjg = #{aXsjg,jdbcType=VARCHAR},
+      </if>
+      <if test="aXsl != null" >
+        a_xsl = #{aXsl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_xsqdid = #{aXsqdid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.AXsqdjg" >
+    update a_xsqdjg
+    set a_scmc = #{aScmc,jdbcType=VARCHAR},
+      a_wjid = #{aWjid,jdbcType=VARCHAR},
+      a_cplx = #{aCplx,jdbcType=VARCHAR},
+      a_xssj = #{aXssj,jdbcType=VARCHAR},
+      a_xsjg = #{aXsjg,jdbcType=VARCHAR},
+      a_xsl = #{aXsl,jdbcType=VARCHAR}
+    where a_xsqdid = #{aXsqdid,jdbcType=VARCHAR}
+  </update>
+  <!-- 根据条件更新 -->
+  <update id="updateByTerm" parameterType="com.ssm.model.AXsqdjg" >
+    update a_xsqdjg
+    set 
+    <!-- a_xsqdid = #{aXsqdid,jdbcType=VARCHAR}, -->
+      a_scmc = #{aScmc,jdbcType=VARCHAR},
+      a_cplx = #{aCplx,jdbcType=VARCHAR},
+      a_xssj = #{aXssj,jdbcType=VARCHAR},
+      a_xsjg = #{aXsjg,jdbcType=VARCHAR},
+      a_xsl = #{aXsl,jdbcType=VARCHAR}
+    where a_wjid = #{aWjid,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>

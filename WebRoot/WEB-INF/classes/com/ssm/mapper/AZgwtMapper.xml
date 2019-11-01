@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.AZgwtMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.AZgwt" >
+    <id column="a_zgwtid" property="aZgwtid" jdbcType="VARCHAR" />
+    <result column="a_wjid" property="aWjid" jdbcType="VARCHAR" />
+    <result column="a_scjywt" property="aScjywt" jdbcType="VARCHAR" />
+    <result column="a_jsbmwt" property="aJsbmwt" jdbcType="VARCHAR" />
+    <result column="a_zfbmwt" property="aZfbmwt" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    a_zgwtid, a_wjid, a_scjywt, a_jsbmwt, a_zfbmwt
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_zgwt
+    where a_zgwtid = #{aZgwtid,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 根据条件查询 -->
+   <select id="selectByTerm" resultMap="BaseResultMap" parameterType="com.ssm.model.AZgwt" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_zgwt
+    where a_wjid = #{aWjid,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- added by john 2018-7-1 -->
+  <select id="selectForUpdata" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_zgwt
+    where a_wjid = #{aWjid,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from a_zgwt
+    where a_zgwtid = #{aZgwtid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.AZgwt" >
+    insert into a_zgwt (a_zgwtid, a_wjid, a_scjywt, 
+      a_jsbmwt, a_zfbmwt)
+    values (#{aZgwtid,jdbcType=VARCHAR}, #{aWjid,jdbcType=VARCHAR}, #{aScjywt,jdbcType=VARCHAR}, 
+      #{aJsbmwt,jdbcType=VARCHAR}, #{aZfbmwt,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.AZgwt" >
+    insert into a_zgwt
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aZgwtid != null" >
+        a_zgwtid,
+      </if>
+      <if test="aWjid != null" >
+        a_wjid,
+      </if>
+      <if test="aScjywt != null" >
+        a_scjywt,
+      </if>
+      <if test="aJsbmwt != null" >
+        a_jsbmwt,
+      </if>
+      <if test="aZfbmwt != null" >
+        a_zfbmwt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aZgwtid != null" >
+        #{aZgwtid,jdbcType=VARCHAR},
+      </if>
+      <if test="aWjid != null" >
+        #{aWjid,jdbcType=VARCHAR},
+      </if>
+      <if test="aScjywt != null" >
+        #{aScjywt,jdbcType=VARCHAR},
+      </if>
+      <if test="aJsbmwt != null" >
+        #{aJsbmwt,jdbcType=VARCHAR},
+      </if>
+      <if test="aZfbmwt != null" >
+        #{aZfbmwt,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.AZgwt" >
+    update a_zgwt
+    <set >
+      <if test="aWjid != null" >
+        a_wjid = #{aWjid,jdbcType=VARCHAR},
+      </if>
+      <if test="aScjywt != null" >
+        a_scjywt = #{aScjywt,jdbcType=VARCHAR},
+      </if>
+      <if test="aJsbmwt != null" >
+        a_jsbmwt = #{aJsbmwt,jdbcType=VARCHAR},
+      </if>
+      <if test="aZfbmwt != null" >
+        a_zfbmwt = #{aZfbmwt,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_zgwtid = #{aZgwtid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.AZgwt" >
+    update a_zgwt
+    set a_wjid = #{aWjid,jdbcType=VARCHAR},
+      a_scjywt = #{aScjywt,jdbcType=VARCHAR},
+      a_jsbmwt = #{aJsbmwt,jdbcType=VARCHAR},
+      a_zfbmwt = #{aZfbmwt,jdbcType=VARCHAR}
+    where a_zgwtid = #{aZgwtid,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 根据条件更新 -->
+   <update id="updateByTerm" parameterType="com.ssm.model.AZgwt" >
+    update a_zgwt
+    set 
+    <!-- a_zgwtid = #{aZgwtid,jdbcType=VARCHAR}, -->
+      a_scjywt = #{aScjywt,jdbcType=VARCHAR},
+      a_jsbmwt = #{aJsbmwt,jdbcType=VARCHAR},
+      a_zfbmwt = #{aZfbmwt,jdbcType=VARCHAR}
+    where a_wjid = #{aWjid,jdbcType=VARCHAR}
+  </update>
+  
+</mapper>

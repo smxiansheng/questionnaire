@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.AJyhjMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.AJyhj" >
+    <id column="a_jyhjid" property="aJyhjid" jdbcType="INTEGER" />
+    <result column="a_jyhjmc" property="aJyhjmc" jdbcType="VARCHAR" />
+    <result column="a_wjid" property="aWjid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    a_jyhjid, a_jyhjmc, a_wjid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_jyhj
+    where a_jyhjid = #{aJyhjid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from a_jyhj
+    where a_jyhjid = #{aJyhjid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.AJyhj" >
+    insert into a_jyhj (a_jyhjid, a_jyhjmc, a_wjid
+      )
+    values (#{aJyhjid,jdbcType=INTEGER}, #{aJyhjmc,jdbcType=VARCHAR}, #{aWjid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.AJyhj" >
+    insert into a_jyhj
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aJyhjid != null" >
+        a_jyhjid,
+      </if>
+      <if test="aJyhjmc != null" >
+        a_jyhjmc,
+      </if>
+      <if test="aWjid != null" >
+        a_wjid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aJyhjid != null" >
+        #{aJyhjid,jdbcType=INTEGER},
+      </if>
+      <if test="aJyhjmc != null" >
+        #{aJyhjmc,jdbcType=VARCHAR},
+      </if>
+      <if test="aWjid != null" >
+        #{aWjid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.AJyhj" >
+    update a_jyhj
+    <set >
+      <if test="aJyhjmc != null" >
+        a_jyhjmc = #{aJyhjmc,jdbcType=VARCHAR},
+      </if>
+      <if test="aWjid != null" >
+        a_wjid = #{aWjid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_jyhjid = #{aJyhjid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.AJyhj" >
+    update a_jyhj
+    set a_jyhjmc = #{aJyhjmc,jdbcType=VARCHAR},
+      a_wjid = #{aWjid,jdbcType=VARCHAR}
+    where a_jyhjid = #{aJyhjid,jdbcType=INTEGER}
+  </update>
+</mapper>

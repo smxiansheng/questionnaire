@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.ASctrccMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.ASctrcc" >
+    <id column="a_trccid" property="aTrccid" jdbcType="VARCHAR" />
+    <result column="a_wjid" property="aWjid" jdbcType="VARCHAR" />
+    <result column="a_scmc" property="aScmc" jdbcType="VARCHAR" />
+    <result column="a_bzsj" property="aBzsj" jdbcType="VARCHAR" />
+    <result column="a_shsj" property="aShsj" jdbcType="VARCHAR" />
+    <result column="a_bzmj" property="aBzmj" jdbcType="VARCHAR" />
+    <result column="a_ncpcl" property="aNcpcl" jdbcType="VARCHAR" />
+    <result column="a_zcpcl" property="aZcpcl" jdbcType="VARCHAR" />
+    <result column="a_fcpcl" property="aFcpcl" jdbcType="VARCHAR" />
+    <result column="a_nxssr" property="aNxssr" jdbcType="VARCHAR" />
+    <result column="a_zcpjg" property="aZcpjg" jdbcType="VARCHAR" />
+    <result column="a_fcpjg" property="aFcpjg" jdbcType="VARCHAR" />
+    <result column="a_zcb" property="aZcb" jdbcType="VARCHAR" />
+    <result column="a_zzf" property="aZzf" jdbcType="VARCHAR" />
+    <result column="a_hff" property="aHff" jdbcType="VARCHAR" />
+    <result column="a_njff" property="aNjff" jdbcType="VARCHAR" />
+    <result column="a_nyf" property="aNyf" jdbcType="VARCHAR" />
+    <result column="a_nmf" property="aNmf" jdbcType="VARCHAR" />
+    <result column="a_zlzyf" property="aZlzyf" jdbcType="VARCHAR" />
+    <result column="a_jxzyf" property="aJxzyf" jdbcType="VARCHAR" />
+    <result column="a_pgf" property="aPgf" jdbcType="VARCHAR" />
+    <result column="a_sf" property="aSf" jdbcType="VARCHAR" />
+    <result column="a_clf" property="aClf" jdbcType="VARCHAR" />
+    <result column="a_rsdlf" property="aRsdlf" jdbcType="VARCHAR" />
+    <result column="a_jsfff" property="aJsfff" jdbcType="VARCHAR" />
+    <result column="a_gjclf" property="aGjclf" jdbcType="VARCHAR" />
+    <result column="a_xlwhf" property="aXlwhf" jdbcType="VARCHAR" />
+    <result column="a_qtzjfy" property="aQtzjfy" jdbcType="VARCHAR" />
+    <result column="a_mmrgcb" property="aMmrgcb" jdbcType="VARCHAR" />
+    <result column="a_bxf" property="aBxf" jdbcType="VARCHAR" />
+    <result column="a_mmtdcb" property="aMmtdcb" jdbcType="VARCHAR" />
+    <result column="a_mmygts" property="aMmygts" jdbcType="VARCHAR" />
+    <result column="a_mmygrs" property="aMmygrs" jdbcType="VARCHAR" />
+    <result column="a_jtygts" property="aJtygts" jdbcType="VARCHAR" />
+    <result column="a_jtygrs" property="aJtygrs" jdbcType="VARCHAR" />
+    <result column="a_ggfy" property="aGgfy" jdbcType="VARCHAR" />
+    <result column="a_ggts" property="aGgts" jdbcType="VARCHAR" />
+    <result column="a_gggj" property="aGggj" jdbcType="VARCHAR" />
+    <result column="a_ggrs" property="aGgrs" jdbcType="VARCHAR" />
+    <result column="a_mzzyl" property="aMzzyl" jdbcType="VARCHAR" />
+    <result column="a_mhfyl" property="aMhfyl" jdbcType="VARCHAR" />
+    <result column="a_mnmyl" property="aMnmyl" jdbcType="VARCHAR" />
+    <result column="a_lzdzj" property="aLzdzj" jdbcType="VARCHAR" />
+    <result column="a_zydzz" property="aZydzz" jdbcType="VARCHAR" />
+    
+    <result column="a_oneheji" property="aOneheji" jdbcType="VARCHAR" />
+    <result column="a_twoheji" property="aTwoheji" jdbcType="VARCHAR" />
+    <result column="a_threeheji" property="aThreeheji" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    a_trccid, a_wjid, a_scmc, a_bzsj, a_shsj, a_bzmj, a_ncpcl, a_zcpcl, a_fcpcl, a_nxssr, 
+    a_zcpjg, a_fcpjg, a_zcb, a_zzf, a_hff, a_njff, a_nyf, a_nmf, a_zlzyf, a_jxzyf, a_pgf, 
+    a_sf, a_clf, a_rsdlf, a_jsfff, a_gjclf, a_xlwhf, a_qtzjfy, a_mmrgcb, a_bxf, a_mmtdcb, 
+    a_mmygts, a_mmygrs, a_jtygts, a_jtygrs, a_ggfy, a_ggts, a_gggj, a_ggrs, a_mzzyl, a_mhfyl, a_mnmyl, 
+    a_lzdzj, a_zydzz, a_oneheji, a_twoheji, a_threeheji
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_sctrcc
+    where a_wjid = #{aWjid,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectByTerm" resultMap="BaseResultMap" parameterType="com.ssm.model.ASctrcc" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_sctrcc
+    where a_wjid = #{aWjid,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- modified by john 2018-7-1 -->
+  <select id="selectForUpdata" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_sctrcc
+    where a_wjid = #{aWjid,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from a_sctrcc
+    where a_trccid = #{aTrccid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.ASctrcc" >
+    insert into a_sctrcc (a_trccid, a_wjid, a_scmc, 
+      a_bzsj, a_shsj, a_bzmj, 
+      a_ncpcl, a_zcpcl, a_fcpcl, 
+      a_nxssr, a_zcpjg, a_fcpjg, 
+      a_zcb, a_zzf, a_hff, a_njff, 
+      a_nyf, a_nmf, a_zlzyf, 
+      a_jxzyf, a_pgf, a_sf, 
+      a_clf, a_rsdlf, a_jsfff, 
+      a_gjclf, a_xlwhf, a_qtzjfy, 
+      a_mmrgcb, a_bxf, a_mmtdcb, 
+      a_mmygts, a_mmygrs, a_jtygts, 
+      a_jtygrs, a_ggfy, a_ggts, a_gggj, a_ggrs,
+      a_mzzyl, a_mhfyl, 
+      a_mnmyl, a_lzdzj, a_zydzz,
+      a_oneheji, a_twoheji, a_threeheji
+      )
+    values (#{aTrccid,jdbcType=VARCHAR}, #{aWjid,jdbcType=VARCHAR}, #{aScmc,jdbcType=VARCHAR}, 
+      #{aBzsj,jdbcType=VARCHAR}, #{aShsj,jdbcType=VARCHAR}, #{aBzmj,jdbcType=VARCHAR}, 
+      #{aNcpcl,jdbcType=VARCHAR}, #{aZcpcl,jdbcType=VARCHAR}, #{aFcpcl,jdbcType=VARCHAR}, 
+      #{aNxssr,jdbcType=VARCHAR}, #{aZcpjg,jdbcType=VARCHAR}, #{aFcpjg,jdbcType=VARCHAR}, 
+      #{aZcb,jdbcType=VARCHAR}, #{aZzf,jdbcType=VARCHAR}, #{aHff,jdbcType=VARCHAR}, #{aNjff,jdbcType=VARCHAR}, 
+      #{aNyf,jdbcType=VARCHAR}, #{aNmf,jdbcType=VARCHAR}, #{aZlzyf,jdbcType=VARCHAR}, 
+      #{aJxzyf,jdbcType=VARCHAR}, #{aPgf,jdbcType=VARCHAR}, #{aSf,jdbcType=VARCHAR}, 
+      #{aClf,jdbcType=VARCHAR}, #{aRsdlf,jdbcType=VARCHAR}, #{aJsfff,jdbcType=VARCHAR}, 
+      #{aGjclf,jdbcType=VARCHAR}, #{aXlwhf,jdbcType=VARCHAR}, #{aQtzjfy,jdbcType=VARCHAR}, 
+      #{aMmrgcb,jdbcType=VARCHAR}, #{aBxf,jdbcType=VARCHAR}, #{aMmtdcb,jdbcType=VARCHAR}, 
+      #{aMmygts,jdbcType=VARCHAR}, #{aMmygrs,jdbcType=VARCHAR}, #{aJtygts,jdbcType=VARCHAR}, 
+      #{aJtygrs,jdbcType=VARCHAR}, #{aGgfy,jdbcType=VARCHAR}, #{aGgts,jdbcType=VARCHAR}, 
+      #{aGggj,jdbcType=VARCHAR}, #{aGgrs,jdbcType=VARCHAR}, #{aMzzyl,jdbcType=VARCHAR}, 
+      #{aMhfyl,jdbcType=VARCHAR}, #{aMnmyl,jdbcType=VARCHAR}, #{aLzdzj,jdbcType=VARCHAR}, 
+      #{aZydzz,jdbcType=VARCHAR}, #{aOneheji,jdbcType=VARCHAR}, #{aTwoheji,jdbcType=VARCHAR},
+      #{aThreeheji,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.ASctrcc" >
+    insert into a_sctrcc
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aTrccid != null" >
+        a_trccid,
+      </if>
+      <if test="aWjid != null" >
+        a_wjid,
+      </if>
+      <if test="aScmc != null" >
+        a_scmc,
+      </if>
+      <if test="aBzsj != null" >
+        a_bzsj,
+      </if>
+      <if test="aShsj != null" >
+        a_shsj,
+      </if>
+      <if test="aBzmj != null" >
+        a_bzmj,
+      </if>
+      <if test="aNcpcl != null" >
+        a_ncpcl,
+      </if>
+      <if test="aZcpcl != null" >
+        a_zcpcl,
+      </if>
+      <if test="aFcpcl != null" >
+        a_fcpcl,
+      </if>
+      <if test="aNxssr != null" >
+        a_nxssr,
+      </if>
+      <if test="aZcpjg != null" >
+        a_zcpjg,
+      </if>
+      <if test="aFcpjg != null" >
+        a_fcpjg,
+      </if>
+      <if test="aZcb != null" >
+        a_zcb,
+      </if>
+      <if test="aZzf != null" >
+        a_zzf,
+      </if>
+      <if test="aHff != null" >
+        a_hff,
+      </if>
+      <if test="aNjff != null" >
+        a_njff,
+      </if>
+      <if test="aNyf != null" >
+        a_nyf,
+      </if>
+      <if test="aNmf != null" >
+        a_nmf,
+      </if>
+      <if test="aZlzyf != null" >
+        a_zlzyf,
+      </if>
+      <if test="aJxzyf != null" >
+        a_jxzyf,
+      </if>
+      <if test="aPgf != null" >
+        a_pgf,
+      </if>
+      <if test="aSf != null" >
+        a_sf,
+      </if>
+      <if test="aClf != null" >
+        a_clf,
+      </if>
+      <if test="aRsdlf != null" >
+        a_rsdlf,
+      </if>
+      <if test="aJsfff != null" >
+        a_jsfff,
+      </if>
+      <if test="aGjclf != null" >
+        a_gjclf,
+      </if>
+      <if test="aXlwhf != null" >
+        a_xlwhf,
+      </if>
+      <if test="aQtzjfy != null" >
+        a_qtzjfy,
+      </if>
+      <if test="aGdzczj != null" >
+        a_gdzczj,
+      </if>
+      <if test="aBxf != null" >
+        a_bxf,
+      </if>
+      <if test="aGlf != null" >
+        a_glf,
+      </if>
+      <if test="aCwf != null" >
+        a_cwf,
+      </if>
+      <if test="aXsf != null" >
+        a_xsf,
+      </if>
+      <if test="aJtygts != null" >
+        a_jtygts,
+      </if>
+      <if test="aJtygrs != null" >
+        a_jtygrs,
+      </if>
+      <if test="aGgts != null" >
+        a_ggts,
+      </if>
+      <if test="aGggj != null" >
+        a_gggj,
+      </if>
+      <if test="aGgrs != null" >
+        a_ggrs,
+      </if>
+      <if test="aMzzyl != null" >
+        a_mzzyl,
+      </if>
+      <if test="aMhfyl != null" >
+        a_mhfyl,
+      </if>
+      <if test="aMnmyl != null" >
+        a_mnmyl,
+      </if>
+      <if test="aLzdzj != null" >
+        a_lzdzj,
+      </if>
+      <if test="aZydzz != null" >
+        a_zydzz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aTrccid != null" >
+        #{aTrccid,jdbcType=VARCHAR},
+      </if>
+      <if test="aWjid != null" >
+        #{aWjid,jdbcType=VARCHAR},
+      </if>
+      <if test="aScmc != null" >
+        #{aScmc,jdbcType=VARCHAR},
+      </if>
+      <if test="aBzsj != null" >
+        #{aBzsj,jdbcType=VARCHAR},
+      </if>
+      <if test="aShsj != null" >
+        #{aShsj,jdbcType=VARCHAR},
+      </if>
+      <if test="aBzmj != null" >
+        #{aBzmj,jdbcType=VARCHAR},
+      </if>
+      <if test="aNcpcl != null" >
+        #{aNcpcl,jdbcType=VARCHAR},
+      </if>
+      <if test="aZcpcl != null" >
+        #{aZcpcl,jdbcType=VARCHAR},
+      </if>
+      <if test="aFcpcl != null" >
+        #{aFcpcl,jdbcType=VARCHAR},
+      </if>
+      <if test="aNxssr != null" >
+        #{aNxssr,jdbcType=VARCHAR},
+      </if>
+      <if test="aZcpjg != null" >
+        #{aZcpjg,jdbcType=VARCHAR},
+      </if>
+      <if test="aFcpjg != null" >
+        #{aFcpjg,jdbcType=VARCHAR},
+      </if>
+      <if test="aZcb != null" >
+        #{aZcb,jdbcType=VARCHAR},
+      </if>
+      <if test="aZzf != null" >
+        #{aZzf,jdbcType=VARCHAR},
+      </if>
+      <if test="aHff != null" >
+        #{aHff,jdbcType=VARCHAR},
+      </if>
+      <if test="aNjff != null" >
+        #{aNjff,jdbcType=VARCHAR},
+      </if>
+      <if test="aNyf != null" >
+        #{aNyf,jdbcType=VARCHAR},
+      </if>
+      <if test="aNmf != null" >
+        #{aNmf,jdbcType=VARCHAR},
+      </if>
+      <if test="aZlzyf != null" >
+        #{aZlzyf,jdbcType=VARCHAR},
+      </if>
+      <if test="aJxzyf != null" >
+        #{aJxzyf,jdbcType=VARCHAR},
+      </if>
+      <if test="aPgf != null" >
+        #{aPgf,jdbcType=VARCHAR},
+      </if>
+      <if test="aSf != null" >
+        #{aSf,jdbcType=VARCHAR},
+      </if>
+      <if test="aClf != null" >
+        #{aClf,jdbcType=VARCHAR},
+      </if>
+      <if test="aRsdlf != null" >
+        #{aRsdlf,jdbcType=VARCHAR},
+      </if>
+      <if test="aJsfff != null" >
+        #{aJsfff,jdbcType=VARCHAR},
+      </if>
+      <if test="aGjclf != null" >
+        #{aGjclf,jdbcType=VARCHAR},
+      </if>
+      <if test="aXlwhf != null" >
+        #{aXlwhf,jdbcType=VARCHAR},
+      </if>
+      <if test="aQtzjfy != null" >
+        #{aQtzjfy,jdbcType=VARCHAR},
+      </if>
+      <if test="aGdzczj != null" >
+        #{aGdzczj,jdbcType=VARCHAR},
+      </if>
+      <if test="aBxf != null" >
+        #{aBxf,jdbcType=VARCHAR},
+      </if>
+      <if test="aGlf != null" >
+        #{aGlf,jdbcType=VARCHAR},
+      </if>
+      <if test="aCwf != null" >
+        #{aCwf,jdbcType=VARCHAR},
+      </if>
+      <if test="aXsf != null" >
+        #{aXsf,jdbcType=VARCHAR},
+      </if>
+      <if test="aJtygts != null" >
+        #{aJtygts,jdbcType=VARCHAR},
+      </if>
+      <if test="aJtygrs != null" >
+        #{aJtygrs,jdbcType=VARCHAR},
+      </if>
+      <if test="aGgts != null" >
+        #{aGgts,jdbcType=VARCHAR},
+      </if>
+      <if test="aGggj != null" >
+        #{aGggj,jdbcType=VARCHAR},
+      </if>
+      <if test="aGgrs != null" >
+        #{aGgrs,jdbcType=VARCHAR},
+      </if>
+      <if test="aMzzyl != null" >
+        #{aMzzyl,jdbcType=VARCHAR},
+      </if>
+      <if test="aMhfyl != null" >
+        #{aMhfyl,jdbcType=VARCHAR},
+      </if>
+      <if test="aMnmyl != null" >
+        #{aMnmyl,jdbcType=VARCHAR},
+      </if>
+      <if test="aLzdzj != null" >
+        #{aLzdzj,jdbcType=VARCHAR},
+      </if>
+      <if test="aZydzz != null" >
+        #{aZydzz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.ASctrcc" >
+    update a_sctrcc
+    <set >
+      <if test="aWjid != null" >
+        a_wjid = #{aWjid,jdbcType=VARCHAR},
+      </if>
+      <if test="aScmc != null" >
+        a_scmc = #{aScmc,jdbcType=VARCHAR},
+      </if>
+      <if test="aBzsj != null" >
+        a_bzsj = #{aBzsj,jdbcType=VARCHAR},
+      </if>
+      <if test="aShsj != null" >
+        a_shsj = #{aShsj,jdbcType=VARCHAR},
+      </if>
+      <if test="aBzmj != null" >
+        a_bzmj = #{aBzmj,jdbcType=VARCHAR},
+      </if>
+      <if test="aNcpcl != null" >
+        a_ncpcl = #{aNcpcl,jdbcType=VARCHAR},
+      </if>
+      <if test="aZcpcl != null" >
+        a_zcpcl = #{aZcpcl,jdbcType=VARCHAR},
+      </if>
+      <if test="aFcpcl != null" >
+        a_fcpcl = #{aFcpcl,jdbcType=VARCHAR},
+      </if>
+      <if test="aNxssr != null" >
+        a_nxssr = #{aNxssr,jdbcType=VARCHAR},
+      </if>
+      <if test="aZcpjg != null" >
+        a_zcpjg = #{aZcpjg,jdbcType=VARCHAR},
+      </if>
+      <if test="aFcpjg != null" >
+        a_fcpjg = #{aFcpjg,jdbcType=VARCHAR},
+      </if>
+      <if test="aZcb != null" >
+        a_zcb = #{aZcb,jdbcType=VARCHAR},
+      </if>
+      <if test="aZzf != null" >
+        a_zzf = #{aZzf,jdbcType=VARCHAR},
+      </if>
+      <if test="aHff != null" >
+        a_hff = #{aHff,jdbcType=VARCHAR},
+      </if>
+      <if test="aNjff != null" >
+        a_njff = #{aNjff,jdbcType=VARCHAR},
+      </if>
+      <if test="aNyf != null" >
+        a_nyf = #{aNyf,jdbcType=VARCHAR},
+      </if>
+      <if test="aNmf != null" >
+        a_nmf = #{aNmf,jdbcType=VARCHAR},
+      </if>
+      <if test="aZlzyf != null" >
+        a_zlzyf = #{aZlzyf,jdbcType=VARCHAR},
+      </if>
+      <if test="aJxzyf != null" >
+        a_jxzyf = #{aJxzyf,jdbcType=VARCHAR},
+      </if>
+      <if test="aPgf != null" >
+        a_pgf = #{aPgf,jdbcType=VARCHAR},
+      </if>
+      <if test="aSf != null" >
+        a_sf = #{aSf,jdbcType=VARCHAR},
+      </if>
+      <if test="aClf != null" >
+        a_clf = #{aClf,jdbcType=VARCHAR},
+      </if>
+      <if test="aRsdlf != null" >
+        a_rsdlf = #{aRsdlf,jdbcType=VARCHAR},
+      </if>
+      <if test="aJsfff != null" >
+        a_jsfff = #{aJsfff,jdbcType=VARCHAR},
+      </if>
+      <if test="aGjclf != null" >
+        a_gjclf = #{aGjclf,jdbcType=VARCHAR},
+      </if>
+      <if test="aXlwhf != null" >
+        a_xlwhf = #{aXlwhf,jdbcType=VARCHAR},
+      </if>
+      <if test="aQtzjfy != null" >
+        a_qtzjfy = #{aQtzjfy,jdbcType=VARCHAR},
+      </if>
+      <if test="aMmrgcb != null" >
+        a_mmrgcb = #{aMmrgcb,jdbcType=VARCHAR},
+      </if>
+      <if test="aBxf != null" >
+        a_bxf = #{aBxf,jdbcType=VARCHAR},
+      </if>
+      <if test="aMmtdcb != null" >
+        a_mmtdcb = #{aMmtdcb,jdbcType=VARCHAR},
+      </if>
+      <if test="aMmygts != null" >
+        a_mmygts = #{aMmygts,jdbcType=VARCHAR},
+      </if>
+      <if test="aMmygrs != null" >
+        a_mmygrs = #{aMmygrs,jdbcType=VARCHAR},
+      </if>
+      <if test="aJtygts != null" >
+        a_jtygts = #{aJtygts,jdbcType=VARCHAR},
+      </if>
+      <if test="aJtygrs != null" >
+        a_jtygrs = #{aJtygrs,jdbcType=VARCHAR},
+      </if>
+      <if test="aGgfy != null" >
+        a_ggfy = #{aGgfy,jdbcType=VARCHAR},
+      </if>
+      <if test="aGgts != null" >
+        a_ggts = #{aGgts,jdbcType=VARCHAR},
+      </if>
+      <if test="aGggj != null" >
+        a_gggj = #{aGggj,jdbcType=VARCHAR},
+      </if>
+      <if test="aGgrs != null" >
+        a_ggrs = #{aGgrs,jdbcType=VARCHAR},
+      </if>
+      <if test="aMzzyl != null" >
+        a_mzzyl = #{aMzzyl,jdbcType=VARCHAR},
+      </if>
+      <if test="aMhfyl != null" >
+        a_mhfyl = #{aMhfyl,jdbcType=VARCHAR},
+      </if>
+      <if test="aMnmyl != null" >
+        a_mnmyl = #{aMnmyl,jdbcType=VARCHAR},
+      </if>
+      <if test="aLzdzj != null" >
+        a_lzdzj = #{aLzdzj,jdbcType=VARCHAR},
+      </if>
+      <if test="aZydzz != null" >
+        a_zydzz = #{aZydzz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_trccid = #{aTrccid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.ASctrcc" >
+    update a_sctrcc
+    set a_wjid = #{aWjid,jdbcType=VARCHAR}，
+      a_scmc = #{aScmc,jdbcType=VARCHAR},
+      a_bzsj = #{aBzsj,jdbcType=VARCHAR},
+      a_shsj = #{aShsj,jdbcType=VARCHAR},
+      a_bzmj = #{aBzmj,jdbcType=VARCHAR},
+      a_ncpcl = #{aNcpcl,jdbcType=VARCHAR},
+      a_zcpcl = #{aZcpcl,jdbcType=VARCHAR},
+      a_fcpcl = #{aFcpcl,jdbcType=VARCHAR},
+      a_nxssr = #{aNxssr,jdbcType=VARCHAR},
+      a_zcpjg = #{aZcpjg,jdbcType=VARCHAR},
+      a_fcpjg = #{aFcpjg,jdbcType=VARCHAR},
+      a_zcb = #{aZcb,jdbcType=VARCHAR},
+      a_zzf = #{aZzf,jdbcType=VARCHAR},
+      a_hff = #{aHff,jdbcType=VARCHAR},
+      a_njff = #{aNjff,jdbcType=VARCHAR},
+      a_nyf = #{aNyf,jdbcType=VARCHAR},
+      a_nmf = #{aNmf,jdbcType=VARCHAR},
+      a_zlzyf = #{aZlzyf,jdbcType=VARCHAR},
+      a_jxzyf = #{aJxzyf,jdbcType=VARCHAR},
+      a_pgf = #{aPgf,jdbcType=VARCHAR},
+      a_sf = #{aSf,jdbcType=VARCHAR},
+      a_clf = #{aClf,jdbcType=VARCHAR},
+      a_rsdlf = #{aRsdlf,jdbcType=VARCHAR},
+      a_jsfff = #{aJsfff,jdbcType=VARCHAR},
+      a_gjclf = #{aGjclf,jdbcType=VARCHAR},
+      a_xlwhf = #{aXlwhf,jdbcType=VARCHAR},
+      a_qtzjfy = #{aQtzjfy,jdbcType=VARCHAR},
+      a_bxf = #{aBxf,jdbcType=VARCHAR},
+      
+      a_jtygts = #{aJtygts,jdbcType=VARCHAR},
+      a_jtygrs = #{aJtygrs,jdbcType=VARCHAR},
+      a_ggts = #{aGgts,jdbcType=VARCHAR},
+      a_gggj = #{aGggj,jdbcType=VARCHAR},
+      a_ggrs = #{aGgrs,jdbcType=VARCHAR},
+      a_mzzyl = #{aMzzyl,jdbcType=VARCHAR},
+      a_mhfyl = #{aMhfyl,jdbcType=VARCHAR},
+      a_mnmyl = #{aMnmyl,jdbcType=VARCHAR},
+      a_lzdzj = #{aLzdzj,jdbcType=VARCHAR},
+      a_zydzz = #{aZydzz,jdbcType=VARCHAR}
+    where a_trccid = #{aTrccid,jdbcType=VARCHAR}
+    
+  </update>
+  <!-- 根据条件更新 -->
+  <update id="updateByTerm" parameterType="com.ssm.model.ASctrcc" >
+    update a_sctrcc
+    set 
+    <!-- a_trccid = #{aTrccid,jdbcType=VARCHAR}, -->
+      a_scmc = #{aScmc,jdbcType=VARCHAR},
+      a_bzsj = #{aBzsj,jdbcType=VARCHAR},
+      a_shsj = #{aShsj,jdbcType=VARCHAR},
+      a_bzmj = #{aBzmj,jdbcType=VARCHAR},
+      a_ncpcl = #{aNcpcl,jdbcType=VARCHAR},
+      a_zcpcl = #{aZcpcl,jdbcType=VARCHAR},
+      a_fcpcl = #{aFcpcl,jdbcType=VARCHAR},
+      a_nxssr = #{aNxssr,jdbcType=VARCHAR},
+      a_zcpjg = #{aZcpjg,jdbcType=VARCHAR},
+      a_fcpjg = #{aFcpjg,jdbcType=VARCHAR},
+      a_zcb = #{aZcb,jdbcType=VARCHAR},
+      a_zzf = #{aZzf,jdbcType=VARCHAR},
+      a_hff = #{aHff,jdbcType=VARCHAR},
+      a_njff = #{aNjff,jdbcType=VARCHAR},
+      a_nyf = #{aNyf,jdbcType=VARCHAR},
+      a_nmf = #{aNmf,jdbcType=VARCHAR},
+      a_zlzyf = #{aZlzyf,jdbcType=VARCHAR},
+      a_jxzyf = #{aJxzyf,jdbcType=VARCHAR},
+      a_pgf = #{aPgf,jdbcType=VARCHAR},
+      a_sf = #{aSf,jdbcType=VARCHAR},
+      a_clf = #{aClf,jdbcType=VARCHAR},
+      a_rsdlf = #{aRsdlf,jdbcType=VARCHAR},
+      a_jsfff = #{aJsfff,jdbcType=VARCHAR},
+      a_gjclf = #{aGjclf,jdbcType=VARCHAR},
+      a_xlwhf = #{aXlwhf,jdbcType=VARCHAR},
+      a_qtzjfy = #{aQtzjfy,jdbcType=VARCHAR},
+      a_bxf = #{aBxf,jdbcType=VARCHAR},
+      a_jtygts = #{aJtygts,jdbcType=VARCHAR},
+      a_jtygrs = #{aJtygrs,jdbcType=VARCHAR},
+      a_ggts = #{aGgts,jdbcType=VARCHAR},
+      a_gggj = #{aGggj,jdbcType=VARCHAR},
+      a_ggrs = #{aGgrs,jdbcType=VARCHAR},
+      a_mzzyl = #{aMzzyl,jdbcType=VARCHAR},
+      a_mhfyl = #{aMhfyl,jdbcType=VARCHAR},
+      a_mnmyl = #{aMnmyl,jdbcType=VARCHAR},
+      a_lzdzj = #{aLzdzj,jdbcType=VARCHAR},
+      a_zydzz = #{aZydzz,jdbcType=VARCHAR},
+      a_oneheji = #{aOneheji,jdbcType=VARCHAR},
+      a_twoheji = #{aTwoheji,jdbcType=VARCHAR},
+      a_threeheji = #{aThreeheji,jdbcType=VARCHAR}
+    where a_wjid = #{aWjid,jdbcType=VARCHAR}
+  </update>
+   <!-- zzj 搜索所有的内容 -->
+   <select id="selectAll" resultMap="BaseResultMap" parameterType="com.ssm.model.ASctrcc" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_sctrcc
+    
+   
+  </select>
+   <select id="selectjoinAwjxx" resultMap="BaseResultMap" parameterType="com.ssm.model.AWjxx" >
+    select 
+    a_trccid, a_sctrcc.a_wjid, a_scmc, a_bzsj, a_shsj, a_bzmj, a_ncpcl, a_zcpcl, a_fcpcl, a_nxssr, 
+    a_zcpjg, a_fcpjg, a_zcb, a_zzf, a_hff, a_njff, a_nyf, a_nmf, a_zlzyf, a_jxzyf, a_pgf, 
+   a_sctrcc.a_sf, a_clf, a_rsdlf, a_jsfff, a_gjclf, a_xlwhf, a_qtzjfy, a_mmrgcb, a_bxf, a_mmtdcb, 
+    a_mmygts, a_mmygrs, a_jtygts, a_jtygrs, a_ggfy, a_ggts, a_gggj, a_ggrs, a_mzzyl, a_mhfyl, a_mnmyl, 
+    a_lzdzj, a_zydzz, a_oneheji, a_twoheji, a_threeheji
+    from a_sctrcc join a_wjxx on a_sctrcc.a_wjid=a_wjxx.a_wjid 
+   where  1=1 
+    <if test="aSf !=null">
+      and a_wjxx.a_sf=#{aSf,jdbcType=VARCHAR}
+    </if>
+     <if test="aSclx != null">
+      and a_sclx=#{aSclx,jdbcType=VARCHAR}
+    </if>
+    
+  </select>
+  
+</mapper>

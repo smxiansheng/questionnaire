@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.AJyfxMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.AJyfx" >
+    <id column="a_jyfxid" property="aJyfxid" jdbcType="INTEGER" />
+    <result column="a_whid" property="aWhid" jdbcType="VARCHAR" />
+    <result column="a_jyfx1" property="aJyfx1" jdbcType="VARCHAR" />
+    <result column="a_jyfx2" property="aJyfx2" jdbcType="VARCHAR" />
+    <result column="a_jyfx3" property="aJyfx3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    a_jyfxid, a_whid, a_jyfx1, a_jyfx2, a_jyfx3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_jyfx
+    where a_jyfxid = #{aJyfxid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from a_jyfx
+    where a_jyfxid = #{aJyfxid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.AJyfx" >
+    insert into a_jyfx (a_jyfxid, a_whid, a_jyfx1, 
+      a_jyfx2, a_jyfx3)
+    values (#{aJyfxid,jdbcType=INTEGER}, #{aWhid,jdbcType=VARCHAR}, #{aJyfx1,jdbcType=VARCHAR}, 
+      #{aJyfx2,jdbcType=VARCHAR}, #{aJyfx3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.AJyfx" >
+    insert into a_jyfx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aJyfxid != null" >
+        a_jyfxid,
+      </if>
+      <if test="aWhid != null" >
+        a_whid,
+      </if>
+      <if test="aJyfx1 != null" >
+        a_jyfx1,
+      </if>
+      <if test="aJyfx2 != null" >
+        a_jyfx2,
+      </if>
+      <if test="aJyfx3 != null" >
+        a_jyfx3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aJyfxid != null" >
+        #{aJyfxid,jdbcType=INTEGER},
+      </if>
+      <if test="aWhid != null" >
+        #{aWhid,jdbcType=VARCHAR},
+      </if>
+      <if test="aJyfx1 != null" >
+        #{aJyfx1,jdbcType=VARCHAR},
+      </if>
+      <if test="aJyfx2 != null" >
+        #{aJyfx2,jdbcType=VARCHAR},
+      </if>
+      <if test="aJyfx3 != null" >
+        #{aJyfx3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.AJyfx" >
+    update a_jyfx
+    <set >
+      <if test="aWhid != null" >
+        a_whid = #{aWhid,jdbcType=VARCHAR},
+      </if>
+      <if test="aJyfx1 != null" >
+        a_jyfx1 = #{aJyfx1,jdbcType=VARCHAR},
+      </if>
+      <if test="aJyfx2 != null" >
+        a_jyfx2 = #{aJyfx2,jdbcType=VARCHAR},
+      </if>
+      <if test="aJyfx3 != null" >
+        a_jyfx3 = #{aJyfx3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_jyfxid = #{aJyfxid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.AJyfx" >
+    update a_jyfx
+    set a_whid = #{aWhid,jdbcType=VARCHAR},
+      a_jyfx1 = #{aJyfx1,jdbcType=VARCHAR},
+      a_jyfx2 = #{aJyfx2,jdbcType=VARCHAR},
+      a_jyfx3 = #{aJyfx3,jdbcType=VARCHAR}
+    where a_jyfxid = #{aJyfxid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.BSclxMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.BSclx" >
+    <id column="scid" property="scid" jdbcType="INTEGER" />
+    <result column="scmc" property="scmc" jdbcType="VARCHAR" />
+    <result column="scsx" property="scsx" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    scid, scmc, scsx
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from b_sclx
+    where scid = #{scid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from b_sclx
+    where scid = #{scid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.BSclx" >
+    insert into b_sclx (scid, scmc, scsx
+      )
+    values (#{scid,jdbcType=INTEGER}, #{scmc,jdbcType=VARCHAR}, #{scsx,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.BSclx" >
+    insert into b_sclx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="scid != null" >
+        scid,
+      </if>
+      <if test="scmc != null" >
+        scmc,
+      </if>
+      <if test="scsx != null" >
+        scsx,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="scid != null" >
+        #{scid,jdbcType=INTEGER},
+      </if>
+      <if test="scmc != null" >
+        #{scmc,jdbcType=VARCHAR},
+      </if>
+      <if test="scsx != null" >
+        #{scsx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.BSclx" >
+    update b_sclx
+    <set >
+      <if test="scmc != null" >
+        scmc = #{scmc,jdbcType=VARCHAR},
+      </if>
+      <if test="scsx != null" >
+        scsx = #{scsx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where scid = #{scid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.BSclx" >
+    update b_sclx
+    set scmc = #{scmc,jdbcType=VARCHAR},
+      scsx = #{scsx,jdbcType=VARCHAR}
+    where scid = #{scid,jdbcType=INTEGER}
+  </update>
+  <select id="findAllVegetables" resultMap="BaseResultMap"  >
+    select * from b_sclx 
+  </select>
+<select id="searchVegetablesByName" resultMap="BaseResultMap" parameterType="String" >
+    select * from b_sclx 
+     <if test="_parameter != null" >
+       where scmc like '%${_parameter}%'
+     </if>
+     or scsx = '0'
+  </select>
+</mapper>

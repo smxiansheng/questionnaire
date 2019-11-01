@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.dao.AYgqkMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.model.AYgqk" >
+    <id column="a_ygqkid" property="aYgqkid" jdbcType="VARCHAR" />
+    <result column="a_wjid" property="aWjid" jdbcType="VARCHAR" />
+    <result column="a_scmc" property="aScmc" jdbcType="VARCHAR" />
+    <result column="a_jxgd" property="aJxgd" jdbcType="VARCHAR" />
+    <result column="a_rggd" property="aRggd" jdbcType="VARCHAR" />
+    <result column="a_jxbz" property="aJxbz" jdbcType="VARCHAR" />
+    <result column="a_rhbz" property="aRhbz" jdbcType="VARCHAR" />
+    <result column="a_jxkq" property="aJxkq" jdbcType="VARCHAR" />
+    <result column="a_rgkq" property="aRgkq" jdbcType="VARCHAR" />
+    <result column="a_jxdysf" property="aJxdysf" jdbcType="VARCHAR" />
+    <result column="a_rgdysf" property="aRgdysf" jdbcType="VARCHAR" />
+    <result column="a_hxcc" property="aHxcc" jdbcType="VARCHAR" />
+    <result column="a_jxcc" property="aJxcc" jdbcType="VARCHAR" />
+    <result column="a_rgcc" property="aRgcc" jdbcType="VARCHAR" />
+    <result column="a_cccc" property="aCccc" jdbcType="VARCHAR" />
+    <result column="a_jxsh" property="aJxsh" jdbcType="VARCHAR" />
+    <result column="a_rgsh" property="aRgsh" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    a_ygqkid, a_wjid, a_scmc, a_jxgd, a_rggd, a_jxbz, a_rhbz, a_jxkq, a_rgkq, a_jxdysf, 
+    a_rgdysf, a_hxcc, a_jxcc, a_rgcc, a_cccc, a_jxsh, a_rgsh
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from a_ygqk
+    where a_ygqkid = #{aYgqkid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from a_ygqk
+    where a_ygqkid = #{aYgqkid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.model.AYgqk" >
+    insert into a_ygqk (a_ygqkid, a_wjid, a_scmc, 
+      a_jxgd, a_rggd, a_jxbz, 
+      a_rhbz, a_jxkq, a_rgkq, 
+      a_jxdysf, a_rgdysf, a_hxcc, 
+      a_jxcc, a_rgcc, a_cccc, 
+      a_jxsh, a_rgsh)
+    values (#{aYgqkid,jdbcType=VARCHAR}, #{aWjid,jdbcType=VARCHAR}, #{aScmc,jdbcType=VARCHAR}, 
+      #{aJxgd,jdbcType=VARCHAR}, #{aRggd,jdbcType=VARCHAR}, #{aJxbz,jdbcType=VARCHAR}, 
+      #{aRhbz,jdbcType=VARCHAR}, #{aJxkq,jdbcType=VARCHAR}, #{aRgkq,jdbcType=VARCHAR}, 
+      #{aJxdysf,jdbcType=VARCHAR}, #{aRgdysf,jdbcType=VARCHAR}, #{aHxcc,jdbcType=VARCHAR}, 
+      #{aJxcc,jdbcType=VARCHAR}, #{aRgcc,jdbcType=VARCHAR}, #{aCccc,jdbcType=VARCHAR}, 
+      #{aJxsh,jdbcType=VARCHAR}, #{aRgsh,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.model.AYgqk" >
+    insert into a_ygqk
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aYgqkid != null" >
+        a_ygqkid,
+      </if>
+      <if test="aWjid != null" >
+        a_wjid,
+      </if>
+      <if test="aScmc != null" >
+        a_scmc,
+      </if>
+      <if test="aJxgd != null" >
+        a_jxgd,
+      </if>
+      <if test="aRggd != null" >
+        a_rggd,
+      </if>
+      <if test="aJxbz != null" >
+        a_jxbz,
+      </if>
+      <if test="aRhbz != null" >
+        a_rhbz,
+      </if>
+      <if test="aJxkq != null" >
+        a_jxkq,
+      </if>
+      <if test="aRgkq != null" >
+        a_rgkq,
+      </if>
+      <if test="aJxdysf != null" >
+        a_jxdysf,
+      </if>
+      <if test="aRgdysf != null" >
+        a_rgdysf,
+      </if>
+      <if test="aHxcc != null" >
+        a_hxcc,
+      </if>
+      <if test="aJxcc != null" >
+        a_jxcc,
+      </if>
+      <if test="aRgcc != null" >
+        a_rgcc,
+      </if>
+      <if test="aCccc != null" >
+        a_cccc,
+      </if>
+      <if test="aJxsh != null" >
+        a_jxsh,
+      </if>
+      <if test="aRgsh != null" >
+        a_rgsh,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aYgqkid != null" >
+        #{aYgqkid,jdbcType=VARCHAR},
+      </if>
+      <if test="aWjid != null" >
+        #{aWjid,jdbcType=VARCHAR},
+      </if>
+      <if test="aScmc != null" >
+        #{aScmc,jdbcType=VARCHAR},
+      </if>
+      <if test="aJxgd != null" >
+        #{aJxgd,jdbcType=VARCHAR},
+      </if>
+      <if test="aRggd != null" >
+        #{aRggd,jdbcType=VARCHAR},
+      </if>
+      <if test="aJxbz != null" >
+        #{aJxbz,jdbcType=VARCHAR},
+      </if>
+      <if test="aRhbz != null" >
+        #{aRhbz,jdbcType=VARCHAR},
+      </if>
+      <if test="aJxkq != null" >
+        #{aJxkq,jdbcType=VARCHAR},
+      </if>
+      <if test="aRgkq != null" >
+        #{aRgkq,jdbcType=VARCHAR},
+      </if>
+      <if test="aJxdysf != null" >
+        #{aJxdysf,jdbcType=VARCHAR},
+      </if>
+      <if test="aRgdysf != null" >
+        #{aRgdysf,jdbcType=VARCHAR},
+      </if>
+      <if test="aHxcc != null" >
+        #{aHxcc,jdbcType=VARCHAR},
+      </if>
+      <if test="aJxcc != null" >
+        #{aJxcc,jdbcType=VARCHAR},
+      </if>
+      <if test="aRgcc != null" >
+        #{aRgcc,jdbcType=VARCHAR},
+      </if>
+      <if test="aCccc != null" >
+        #{aCccc,jdbcType=VARCHAR},
+      </if>
+      <if test="aJxsh != null" >
+        #{aJxsh,jdbcType=VARCHAR},
+      </if>
+      <if test="aRgsh != null" >
+        #{aRgsh,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.model.AYgqk" >
+    update a_ygqk
+    <set >
+      <if test="aWjid != null" >
+        a_wjid = #{aWjid,jdbcType=VARCHAR},
+      </if>
+      <if test="aScmc != null" >
+        a_scmc = #{aScmc,jdbcType=VARCHAR},
+      </if>
+      <if test="aJxgd != null" >
+        a_jxgd = #{aJxgd,jdbcType=VARCHAR},
+      </if>
+      <if test="aRggd != null" >
+        a_rggd = #{aRggd,jdbcType=VARCHAR},
+      </if>
+      <if test="aJxbz != null" >
+        a_jxbz = #{aJxbz,jdbcType=VARCHAR},
+      </if>
+      <if test="aRhbz != null" >
+        a_rhbz = #{aRhbz,jdbcType=VARCHAR},
+      </if>
+      <if test="aJxkq != null" >
+        a_jxkq = #{aJxkq,jdbcType=VARCHAR},
+      </if>
+      <if test="aRgkq != null" >
+        a_rgkq = #{aRgkq,jdbcType=VARCHAR},
+      </if>
+      <if test="aJxdysf != null" >
+        a_jxdysf = #{aJxdysf,jdbcType=VARCHAR},
+      </if>
+      <if test="aRgdysf != null" >
+        a_rgdysf = #{aRgdysf,jdbcType=VARCHAR},
+      </if>
+      <if test="aHxcc != null" >
+        a_hxcc = #{aHxcc,jdbcType=VARCHAR},
+      </if>
+      <if test="aJxcc != null" >
+        a_jxcc = #{aJxcc,jdbcType=VARCHAR},
+      </if>
+      <if test="aRgcc != null" >
+        a_rgcc = #{aRgcc,jdbcType=VARCHAR},
+      </if>
+      <if test="aCccc != null" >
+        a_cccc = #{aCccc,jdbcType=VARCHAR},
+      </if>
+      <if test="aJxsh != null" >
+        a_jxsh = #{aJxsh,jdbcType=VARCHAR},
+      </if>
+      <if test="aRgsh != null" >
+        a_rgsh = #{aRgsh,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where a_ygqkid = #{aYgqkid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.model.AYgqk" >
+    update a_ygqk
+    set a_wjid = #{aWjid,jdbcType=VARCHAR},
+      a_scmc = #{aScmc,jdbcType=VARCHAR},
+      a_jxgd = #{aJxgd,jdbcType=VARCHAR},
+      a_rggd = #{aRggd,jdbcType=VARCHAR},
+      a_jxbz = #{aJxbz,jdbcType=VARCHAR},
+      a_rhbz = #{aRhbz,jdbcType=VARCHAR},
+      a_jxkq = #{aJxkq,jdbcType=VARCHAR},
+      a_rgkq = #{aRgkq,jdbcType=VARCHAR},
+      a_jxdysf = #{aJxdysf,jdbcType=VARCHAR},
+      a_rgdysf = #{aRgdysf,jdbcType=VARCHAR},
+      a_hxcc = #{aHxcc,jdbcType=VARCHAR},
+      a_jxcc = #{aJxcc,jdbcType=VARCHAR},
+      a_rgcc = #{aRgcc,jdbcType=VARCHAR},
+      a_cccc = #{aCccc,jdbcType=VARCHAR},
+      a_jxsh = #{aJxsh,jdbcType=VARCHAR},
+      a_rgsh = #{aRgsh,jdbcType=VARCHAR}
+    where a_ygqkid = #{aYgqkid,jdbcType=VARCHAR}
+  </update>
+</mapper>
